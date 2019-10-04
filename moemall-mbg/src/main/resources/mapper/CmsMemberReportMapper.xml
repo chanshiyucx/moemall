@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chanshiyu.moemall.mbg.mapper.CmsMemberReportMapper">
+  <resultMap id="BaseResultMap" type="com.chanshiyu.moemall.mbg.model.CmsMemberReport">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="id" jdbcType="BIGINT" property="id" />
+    <result column="report_type" jdbcType="INTEGER" property="reportType" />
+    <result column="report_member_name" jdbcType="VARCHAR" property="reportMemberName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="report_object" jdbcType="VARCHAR" property="reportObject" />
+    <result column="report_status" jdbcType="INTEGER" property="reportStatus" />
+    <result column="handle_status" jdbcType="INTEGER" property="handleStatus" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+  </resultMap>
+</mapper>

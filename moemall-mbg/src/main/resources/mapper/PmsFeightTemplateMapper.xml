@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chanshiyu.moemall.mbg.mapper.PmsFeightTemplateMapper">
+  <resultMap id="BaseResultMap" type="com.chanshiyu.moemall.mbg.model.PmsFeightTemplate">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="charge_type" jdbcType="INTEGER" property="chargeType" />
+    <result column="first_weight" jdbcType="DECIMAL" property="firstWeight" />
+    <result column="first_fee" jdbcType="DECIMAL" property="firstFee" />
+    <result column="continue_weight" jdbcType="DECIMAL" property="continueWeight" />
+    <result column="continme_fee" jdbcType="DECIMAL" property="continmeFee" />
+    <result column="dest" jdbcType="VARCHAR" property="dest" />
+  </resultMap>
+</mapper>

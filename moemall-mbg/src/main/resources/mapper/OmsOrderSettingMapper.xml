@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chanshiyu.moemall.mbg.mapper.OmsOrderSettingMapper">
+  <resultMap id="BaseResultMap" type="com.chanshiyu.moemall.mbg.model.OmsOrderSetting">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="flash_order_overtime" jdbcType="INTEGER" property="flashOrderOvertime" />
+    <result column="normal_order_overtime" jdbcType="INTEGER" property="normalOrderOvertime" />
+    <result column="confirm_overtime" jdbcType="INTEGER" property="confirmOvertime" />
+    <result column="finish_overtime" jdbcType="INTEGER" property="finishOvertime" />
+    <result column="comment_overtime" jdbcType="INTEGER" property="commentOvertime" />
+  </resultMap>
+</mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chanshiyu.moemall.mbg.mapper.PmsProductOperateLogMapper">
+  <resultMap id="BaseResultMap" type="com.chanshiyu.moemall.mbg.model.PmsProductOperateLog">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="product_id" jdbcType="BIGINT" property="productId" />
+    <result column="price_old" jdbcType="DECIMAL" property="priceOld" />
+    <result column="price_new" jdbcType="DECIMAL" property="priceNew" />
+    <result column="sale_price_old" jdbcType="DECIMAL" property="salePriceOld" />
+    <result column="sale_price_new" jdbcType="DECIMAL" property="salePriceNew" />
+    <result column="gift_point_old" jdbcType="INTEGER" property="giftPointOld" />
+    <result column="gift_point_new" jdbcType="INTEGER" property="giftPointNew" />
+    <result column="use_point_limit_old" jdbcType="INTEGER" property="usePointLimitOld" />
+    <result column="use_point_limit_new" jdbcType="INTEGER" property="usePointLimitNew" />
+    <result column="operate_man" jdbcType="VARCHAR" property="operateMan" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+</mapper>

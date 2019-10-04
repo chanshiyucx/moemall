@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chanshiyu.moemall.mbg.mapper.UmsMemberLevelMapper">
+  <resultMap id="BaseResultMap" type="com.chanshiyu.moemall.mbg.model.UmsMemberLevel">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="growth_point" jdbcType="INTEGER" property="growthPoint" />
+    <result column="default_status" jdbcType="INTEGER" property="defaultStatus" />
+    <result column="free_freight_point" jdbcType="DECIMAL" property="freeFreightPoint" />
+    <result column="comment_growth_point" jdbcType="INTEGER" property="commentGrowthPoint" />
+    <result column="priviledge_free_freight" jdbcType="INTEGER" property="priviledgeFreeFreight" />
+    <result column="priviledge_sign_in" jdbcType="INTEGER" property="priviledgeSignIn" />
+    <result column="priviledge_comment" jdbcType="INTEGER" property="priviledgeComment" />
+    <result column="priviledge_promotion" jdbcType="INTEGER" property="priviledgePromotion" />
+    <result column="priviledge_member_price" jdbcType="INTEGER" property="priviledgeMemberPrice" />
+    <result column="priviledge_birthday" jdbcType="INTEGER" property="priviledgeBirthday" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+  </resultMap>
+</mapper>

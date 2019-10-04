@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chanshiyu.moemall.mbg.mapper.UmsMemberRuleSettingMapper">
+  <resultMap id="BaseResultMap" type="com.chanshiyu.moemall.mbg.model.UmsMemberRuleSetting">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="continue_sign_day" jdbcType="INTEGER" property="continueSignDay" />
+    <result column="continue_sign_point" jdbcType="INTEGER" property="continueSignPoint" />
+    <result column="consume_per_point" jdbcType="DECIMAL" property="consumePerPoint" />
+    <result column="low_order_amount" jdbcType="DECIMAL" property="lowOrderAmount" />
+    <result column="max_point_per_order" jdbcType="INTEGER" property="maxPointPerOrder" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+  </resultMap>
+</mapper>

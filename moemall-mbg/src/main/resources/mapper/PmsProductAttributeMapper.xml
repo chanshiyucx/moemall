@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chanshiyu.moemall.mbg.mapper.PmsProductAttributeMapper">
+  <resultMap id="BaseResultMap" type="com.chanshiyu.moemall.mbg.model.PmsProductAttribute">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="product_attribute_category_id" jdbcType="BIGINT" property="productAttributeCategoryId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="select_type" jdbcType="INTEGER" property="selectType" />
+    <result column="input_type" jdbcType="INTEGER" property="inputType" />
+    <result column="input_list" jdbcType="VARCHAR" property="inputList" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="filter_type" jdbcType="INTEGER" property="filterType" />
+    <result column="search_type" jdbcType="INTEGER" property="searchType" />
+    <result column="related_status" jdbcType="INTEGER" property="relatedStatus" />
+    <result column="hand_add_status" jdbcType="INTEGER" property="handAddStatus" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+  </resultMap>
+</mapper>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chanshiyu.moemall.mbg.mapper.CmsSubjectMapper">
+  <resultMap id="BaseResultMap" type="com.chanshiyu.moemall.mbg.model.CmsSubject">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="category_id" jdbcType="BIGINT" property="categoryId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="pic" jdbcType="VARCHAR" property="pic" />
+    <result column="product_count" jdbcType="INTEGER" property="productCount" />
+    <result column="recommend_status" jdbcType="INTEGER" property="recommendStatus" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="collect_count" jdbcType="INTEGER" property="collectCount" />
+    <result column="read_count" jdbcType="INTEGER" property="readCount" />
+    <result column="comment_count" jdbcType="INTEGER" property="commentCount" />
+    <result column="album_pics" jdbcType="VARCHAR" property="albumPics" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="show_status" jdbcType="INTEGER" property="showStatus" />
+    <result column="forward_count" jdbcType="INTEGER" property="forwardCount" />
+    <result column="category_name" jdbcType="VARCHAR" property="categoryName" />
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+</mapper>
