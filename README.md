@@ -15,7 +15,7 @@
 | Druid            | 1.1.10 | 数据库连接池     |
 | JWT              | 0.9.0  | JWT 登录支持     |
 | Lombok           | 1.18.8 | 简化对象封装工具 |
-| Swagger-UI       | -      | 文档生产工具     |
+| Swagger-UI       | 2.9.2  | 文档生产工具     |
 | Elasticsearch    | -      | 搜索引擎         |
 | RabbitMq         | -      | 消息队列         |
 | Redis            | -      | 分布式缓存       |
