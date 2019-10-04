@@ -24,7 +24,6 @@
         <dependency>
             <groupId>tk.mybatis</groupId>
             <artifactId>mapper</artifactId>
-            <version>4.1.5</version>
         </dependency>
     </dependencies>
 
