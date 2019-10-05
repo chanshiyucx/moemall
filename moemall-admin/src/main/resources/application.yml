@@ -13,3 +13,14 @@ mybatis:
   mapper-locations:
     - classpath:dao/*.xml
     - classpath*:com/**/mapper/*.xml
+
+swagger:
+  title: 萌购后台Api
+  description: 萌购后台Api
+  version: 1.0.0
+  terms-of-service-url: https://chanshiyu.com/
+  base-package: com.chanshiyu.moemall.admin
+  contact:
+    name: 蝉時雨
+    url: https://chanshiyu.com/
+    email: me@chanshiyu.com

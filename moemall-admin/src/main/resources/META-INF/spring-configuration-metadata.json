@@ -1,0 +1,36 @@
+{
+  "properties": [
+    {
+      "name": "swagger.title",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "swagger.description",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "swagger.version",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "swagger.terms-of-service-url",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "swagger.base-package",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "swagger.contact.name",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "swagger.contact.url",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "swagger.contact.email",
+      "type": "java.lang.String"
+    }
+  ]
+}
