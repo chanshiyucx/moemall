@@ -16,7 +16,6 @@
     <description>Moe Mall MBG</description>
 
     <properties>
-        <!-- Commons Settings -->
         <mysql.version>8.0.17</mysql.version>
         <tk-mybatis.version>2.1.5</tk-mybatis.version>
         <tk-mybatis-mapper.version>4.1.5</tk-mybatis-mapper.version>
