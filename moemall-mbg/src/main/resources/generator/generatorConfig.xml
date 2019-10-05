@@ -8,8 +8,6 @@
     <properties resource="generator/jdbc.properties"/>
 
     <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
-        <property name="beginningDelimiter" value="`"/>
-        <property name="endingDelimiter" value="`"/>
         <property name="javaFileEncoding" value="UTF-8"/>
 
         <!-- 自带插件，实体类序列化 -->
@@ -18,21 +16,11 @@
         <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
             <property name="mappers" value="tk.mybatis.mapper.MyMapper"/>
             <property name="caseSensitive" value="true"/>
+            <property name="beginningDelimiter" value="`"/>
+            <property name="endingDelimiter" value="`"/>
             <property name="lombok" value="Data"/>
+            <property name="swagger" value="true"/>
         </plugin>
-        <!-- 自定义插件，自动为entity生成swagger2文档 -->
-<!--        <plugin type="com.chanshiyu.moemall.mbg.MybatisGenerator">-->
-<!--            <property name="apiModelAnnotationPackage" value="io.swagger.annotations.ApiModel" />-->
-<!--            <property name="apiModelPropertyAnnotationPackage" value="io.swagger.annotations.ApiModelProperty" />-->
-<!--        </plugin>-->
-
-        <!-- 自定义生成model的代码注释 -->
-        <commentGenerator>
-            <!-- 是否去除自动生成的注释 true：是  false:否 -->
-            <property name="suppressAllComments" value="true"/>
-            <property name="suppressDate" value="true"/>
-            <property name="addRemarkComments" value="true"/>
-        </commentGenerator>
 
         <!-- 配置数据库连接 -->
         <jdbcConnection driverClass="${jdbc.driverClass}"
