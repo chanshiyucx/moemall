@@ -8,19 +8,18 @@ import lombok.Data;
 
 @Data
 @ApiModel("会员与产品分类关系表（用户喜欢的分类）")
-@Table(name = "`ums_member_product_category_relation`")
+@Table(name = "ums_member_product_category_relation")
 public class UmsMemberProductCategoryRelation implements Serializable {
     @Id
-    @Column(name = "`id`")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ApiModelProperty("")
     private Long id;
 
-    @Column(name = "`member_id`")
+    @Column(name = "member_id")
     @ApiModelProperty("")
     private Long memberId;
 
-    @Column(name = "`product_category_id`")
+    @Column(name = "product_category_id")
     @ApiModelProperty("")
     private Long productCategoryId;
 

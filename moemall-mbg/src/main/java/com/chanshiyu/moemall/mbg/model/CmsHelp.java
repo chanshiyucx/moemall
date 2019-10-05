@@ -9,39 +9,35 @@ import lombok.Data;
 
 @Data
 @ApiModel("帮助表")
-@Table(name = "`cms_help`")
+@Table(name = "cms_help")
 public class CmsHelp implements Serializable {
     @Id
-    @Column(name = "`id`")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ApiModelProperty("")
     private Long id;
 
-    @Column(name = "`category_id`")
+    @Column(name = "category_id")
     @ApiModelProperty("")
     private Long categoryId;
 
-    @Column(name = "`icon`")
     @ApiModelProperty("")
     private String icon;
 
-    @Column(name = "`title`")
     @ApiModelProperty("")
     private String title;
 
-    @Column(name = "`show_status`")
+    @Column(name = "show_status")
     @ApiModelProperty("")
     private Integer showStatus;
 
-    @Column(name = "`create_time`")
+    @Column(name = "create_time")
     @ApiModelProperty("")
     private Date createTime;
 
-    @Column(name = "`read_count`")
+    @Column(name = "read_count")
     @ApiModelProperty("")
     private Integer readCount;
 
-    @Column(name = "`content`")
     @ApiModelProperty("")
     private String content;
 

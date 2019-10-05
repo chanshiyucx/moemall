@@ -8,31 +8,27 @@ import lombok.Data;
 
 @Data
 @ApiModel("相册表")
-@Table(name = "`pms_album`")
+@Table(name = "pms_album")
 public class PmsAlbum implements Serializable {
     @Id
-    @Column(name = "`id`")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ApiModelProperty("")
     private Long id;
 
-    @Column(name = "`name`")
     @ApiModelProperty("")
     private String name;
 
-    @Column(name = "`cover_pic`")
+    @Column(name = "cover_pic")
     @ApiModelProperty("")
     private String coverPic;
 
-    @Column(name = "`pic_count`")
+    @Column(name = "pic_count")
     @ApiModelProperty("")
     private Integer picCount;
 
-    @Column(name = "`sort`")
     @ApiModelProperty("")
     private Integer sort;
 
-    @Column(name = "`description`")
     @ApiModelProperty("")
     private String description;
 

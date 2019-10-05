@@ -2,17 +2,28 @@ server:
   port: 8090
 
 spring:
+  application:
+    name: moemall-admin
   datasource:
     url: jdbc:mysql://192.168.205.4:3306/moemall
     hikari:
       username: root
       password: 123456
       driver-class-name: com.mysql.cj.jdbc.Driver
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.205.4:8848
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 
 mybatis:
-  mapper-locations:
-    - classpath:dao/*.xml
-    - classpath*:com/**/mapper/*.xml
+  mapper-locations: classpath*:mapper/*.xml
+  type-aliases-package: com.chanshiyu.moemall.mbg.model
 
 swagger:
   title: 萌购后台Api

@@ -8,19 +8,18 @@ import lombok.Data;
 
 @Data
 @ApiModel("后台用户和角色关系表")
-@Table(name = "`ums_admin_role_relation`")
+@Table(name = "ums_admin_role_relation")
 public class UmsAdminRoleRelation implements Serializable {
     @Id
-    @Column(name = "`id`")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ApiModelProperty("")
     private Long id;
 
-    @Column(name = "`admin_id`")
+    @Column(name = "admin_id")
     @ApiModelProperty("")
     private Long adminId;
 
-    @Column(name = "`role_id`")
+    @Column(name = "role_id")
     @ApiModelProperty("")
     private Long roleId;
 

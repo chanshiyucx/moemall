@@ -8,26 +8,24 @@ import lombok.Data;
 
 @Data
 @ApiModel("存储产品参数信息的表")
-@Table(name = "`pms_product_attribute_value`")
+@Table(name = "pms_product_attribute_value")
 public class PmsProductAttributeValue implements Serializable {
     @Id
-    @Column(name = "`id`")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ApiModelProperty("")
     private Long id;
 
-    @Column(name = "`product_id`")
+    @Column(name = "product_id")
     @ApiModelProperty("")
     private Long productId;
 
-    @Column(name = "`product_attribute_id`")
+    @Column(name = "product_attribute_id")
     @ApiModelProperty("")
     private Long productAttributeId;
 
     /**
      * 手动添加规格或参数的值，参数单值，规格有多个时以逗号隔开
      */
-    @Column(name = "`value`")
     @ApiModelProperty("手动添加规格或参数的值，参数单值，规格有多个时以逗号隔开")
     private String value;
 

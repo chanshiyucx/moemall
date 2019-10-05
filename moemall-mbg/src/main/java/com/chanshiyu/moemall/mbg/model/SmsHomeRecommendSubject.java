@@ -8,27 +8,25 @@ import lombok.Data;
 
 @Data
 @ApiModel("首页推荐专题表")
-@Table(name = "`sms_home_recommend_subject`")
+@Table(name = "sms_home_recommend_subject")
 public class SmsHomeRecommendSubject implements Serializable {
     @Id
-    @Column(name = "`id`")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ApiModelProperty("")
     private Long id;
 
-    @Column(name = "`subject_id`")
+    @Column(name = "subject_id")
     @ApiModelProperty("")
     private Long subjectId;
 
-    @Column(name = "`subject_name`")
+    @Column(name = "subject_name")
     @ApiModelProperty("")
     private String subjectName;
 
-    @Column(name = "`recommend_status`")
+    @Column(name = "recommend_status")
     @ApiModelProperty("")
     private Integer recommendStatus;
 
-    @Column(name = "`sort`")
     @ApiModelProperty("")
     private Integer sort;
 

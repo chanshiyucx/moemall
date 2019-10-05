@@ -9,30 +9,29 @@ import lombok.Data;
 
 @Data
 @ApiModel("商品会员价格表")
-@Table(name = "`pms_member_price`")
+@Table(name = "pms_member_price")
 public class PmsMemberPrice implements Serializable {
     @Id
-    @Column(name = "`id`")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ApiModelProperty("")
     private Long id;
 
-    @Column(name = "`product_id`")
+    @Column(name = "product_id")
     @ApiModelProperty("")
     private Long productId;
 
-    @Column(name = "`member_level_id`")
+    @Column(name = "member_level_id")
     @ApiModelProperty("")
     private Long memberLevelId;
 
     /**
      * 会员价格
      */
-    @Column(name = "`member_price`")
+    @Column(name = "member_price")
     @ApiModelProperty("会员价格")
     private BigDecimal memberPrice;
 
-    @Column(name = "`member_level_name`")
+    @Column(name = "member_level_name")
     @ApiModelProperty("")
     private String memberLevelName;
 

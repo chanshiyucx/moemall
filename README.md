@@ -28,3 +28,25 @@
 | moemall-common | 通用的工具类库 |
 | moemall-mbg    | 通用的代码生成 |
 | moemall-admin  | 后台管理模块   |
+
+## Nacos Docker
+
+- [官方文档](https://nacos.io/zh-cn/docs/quick-start-docker.html)
+- [Github](https://github.com/nacos-group/nacos-docker)
+
+```bash
+# clone 项目
+git clone https://github.com/nacos-group/nacos-docker.git
+cd nacos-docker
+
+# 启动：单机模式 Derby
+docker-compose -f example/standalone-derby.yaml up
+
+# 启动：单机模式 Mysql
+docker-compose -f example/standalone-mysql.yaml up
+
+# 停止：使用哪个配置启动就用哪个关闭
+docker-compose -f example/standalone-derby.yaml down
+```
+
+访问连接：`http://IP:8848/nacos/`

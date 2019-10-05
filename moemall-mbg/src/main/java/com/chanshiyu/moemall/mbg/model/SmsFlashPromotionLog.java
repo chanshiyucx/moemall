@@ -9,38 +9,37 @@ import lombok.Data;
 
 @Data
 @ApiModel("限时购通知记录")
-@Table(name = "`sms_flash_promotion_log`")
+@Table(name = "sms_flash_promotion_log")
 public class SmsFlashPromotionLog implements Serializable {
     @Id
-    @Column(name = "`id`")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ApiModelProperty("")
     private Integer id;
 
-    @Column(name = "`member_id`")
+    @Column(name = "member_id")
     @ApiModelProperty("")
     private Integer memberId;
 
-    @Column(name = "`product_id`")
+    @Column(name = "product_id")
     @ApiModelProperty("")
     private Long productId;
 
-    @Column(name = "`member_phone`")
+    @Column(name = "member_phone")
     @ApiModelProperty("")
     private String memberPhone;
 
-    @Column(name = "`product_name`")
+    @Column(name = "product_name")
     @ApiModelProperty("")
     private String productName;
 
     /**
      * 会员订阅时间
      */
-    @Column(name = "`subscribe_time`")
+    @Column(name = "subscribe_time")
     @ApiModelProperty("会员订阅时间")
     private Date subscribeTime;
 
-    @Column(name = "`send_time`")
+    @Column(name = "send_time")
     @ApiModelProperty("")
     private Date sendTime;
 

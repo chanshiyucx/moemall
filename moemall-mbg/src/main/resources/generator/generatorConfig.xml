@@ -8,6 +8,8 @@
     <properties resource="generator/jdbc.properties"/>
 
     <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
         <property name="javaFileEncoding" value="UTF-8"/>
 
         <!-- 自带插件，实体类序列化 -->
@@ -16,8 +18,6 @@
         <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
             <property name="mappers" value="tk.mybatis.mapper.MyMapper"/>
             <property name="caseSensitive" value="true"/>
-            <property name="beginningDelimiter" value="`"/>
-            <property name="endingDelimiter" value="`"/>
             <property name="lombok" value="Data"/>
             <property name="swagger" value="true"/>
         </plugin>
