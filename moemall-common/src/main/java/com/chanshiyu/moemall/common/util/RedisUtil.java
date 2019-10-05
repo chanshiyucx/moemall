@@ -1,4 +1,4 @@
-package com.chanshiyu.moemall.admin.util;
+package com.chanshiyu.moemall.common.util;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

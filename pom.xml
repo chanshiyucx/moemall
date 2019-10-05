@@ -31,9 +31,6 @@
         <!-- Spring Cloud Settings -->
         <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
         <spring-cloud-alibaba.version>2.1.0.RELEASE</spring-cloud-alibaba.version>
-
-        <!-- Commons Settings -->
-        <jjwt.version>0.9.0</jjwt.version>
     </properties>
 
     <dependencyManagement>
@@ -52,13 +49,6 @@
                 <version>${spring-cloud-alibaba.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
-            </dependency>
-
-            <!-- 登录验证 -->
-            <dependency>
-                <groupId>io.jsonwebtoken</groupId>
-                <artifactId>jjwt</artifactId>
-                <version>${jjwt.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
