@@ -1,12 +1,13 @@
 package com.chanshiyu.moemall.mbg.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 import lombok.Data;
 
 @Data
 @Table(name = "pms_product_vertify_record")
-public class PmsProductVertifyRecord {
+public class PmsProductVertifyRecord implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -29,4 +30,6 @@ public class PmsProductVertifyRecord {
      * 反馈详情
      */
     private String detail;
+
+    private static final long serialVersionUID = 1L;
 }

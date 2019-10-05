@@ -1,12 +1,13 @@
 package com.chanshiyu.moemall.mbg.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 import lombok.Data;
 
 @Data
 @Table(name = "cms_topic_comment")
-public class CmsTopicComment {
+public class CmsTopicComment implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,4 +28,6 @@ public class CmsTopicComment {
 
     @Column(name = "show_status")
     private Integer showStatus;
+
+    private static final long serialVersionUID = 1L;
 }

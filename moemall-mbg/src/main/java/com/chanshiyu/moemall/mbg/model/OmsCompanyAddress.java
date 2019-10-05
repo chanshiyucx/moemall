@@ -1,11 +1,12 @@
 package com.chanshiyu.moemall.mbg.model;
 
+import java.io.Serializable;
 import javax.persistence.*;
 import lombok.Data;
 
 @Data
 @Table(name = "oms_company_address")
-public class OmsCompanyAddress {
+public class OmsCompanyAddress implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -58,4 +59,6 @@ public class OmsCompanyAddress {
      */
     @Column(name = "detail_address")
     private String detailAddress;
+
+    private static final long serialVersionUID = 1L;
 }

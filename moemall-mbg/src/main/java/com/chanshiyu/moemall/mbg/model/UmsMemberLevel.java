@@ -1,12 +1,13 @@
 package com.chanshiyu.moemall.mbg.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.persistence.*;
 import lombok.Data;
 
 @Data
 @Table(name = "ums_member_level")
-public class UmsMemberLevel {
+public class UmsMemberLevel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -71,4 +72,6 @@ public class UmsMemberLevel {
     private Integer priviledgeBirthday;
 
     private String note;
+
+    private static final long serialVersionUID = 1L;
 }

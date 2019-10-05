@@ -15,24 +15,50 @@
     <name>Moe Mall MBG</name>
     <description>Moe Mall MBG</description>
 
+    <properties>
+        <!-- Commons Settings -->
+        <mysql.version>8.0.17</mysql.version>
+        <generator.version>1.3.7</generator.version>
+        <tk-mybatis.version>2.1.5</tk-mybatis.version>
+        <tk-mybatis-mapper.version>4.1.5</tk-mybatis-mapper.version>
+        <pagehelper.version>1.2.12</pagehelper.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.chanshiyu</groupId>
             <artifactId>moemall-common</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
-        <dependency>
-            <groupId>tk.mybatis</groupId>
-            <artifactId>mapper-spring-boot-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>tk.mybatis</groupId>
-            <artifactId>mapper</artifactId>
-        </dependency>
+        <!-- Mysql数据库驱动 -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
+            <version>${mysql.version}</version>
+        </dependency>
+        <!-- 通用代码生成器 -->
+        <dependency>
+            <groupId>org.mybatis.generator</groupId>
+            <artifactId>mybatis-generator-core</artifactId>
+            <version>${generator.version}</version>
+        </dependency>
+        <!-- Mybatis -->
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper-spring-boot-starter</artifactId>
+            <version>${tk-mybatis.version}</version>
+        </dependency>
+        <!-- 通用mapper -->
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper</artifactId>
+            <version>${tk-mybatis-mapper.version}</version>
+        </dependency>
+        <!-- MyBatis分页插件 -->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>${pagehelper.version}</version>
         </dependency>
     </dependencies>
 
@@ -45,7 +71,7 @@
             <plugin>
                 <groupId>org.mybatis.generator</groupId>
                 <artifactId>mybatis-generator-maven-plugin</artifactId>
-                <version>1.3.6</version>
+                <version>1.3.7</version>
                 <configuration>
                     <configurationFile>
                         ${basedir}/src/main/resources/generator/generatorConfig.xml
@@ -57,12 +83,12 @@
                     <dependency>
                         <groupId>mysql</groupId>
                         <artifactId>mysql-connector-java</artifactId>
-                        <version>8.0.17</version>
+                        <version>${mysql.version}</version>
                     </dependency>
                     <dependency>
                         <groupId>tk.mybatis</groupId>
                         <artifactId>mapper</artifactId>
-                        <version>4.1.5</version>
+                        <version>${tk-mybatis-mapper.version}</version>
                     </dependency>
                 </dependencies>
             </plugin>

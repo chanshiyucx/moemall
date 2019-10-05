@@ -1,12 +1,13 @@
 package com.chanshiyu.moemall.mbg.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.persistence.*;
 import lombok.Data;
 
 @Data
 @Table(name = "oms_order_item")
-public class OmsOrderItem {
+public class OmsOrderItem implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -118,4 +119,6 @@ public class OmsOrderItem {
      */
     @Column(name = "product_attr")
     private String productAttr;
+
+    private static final long serialVersionUID = 1L;
 }

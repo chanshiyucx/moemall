@@ -29,39 +29,11 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!-- Commons Settings -->
-        <mysql.version>8.0.17</mysql.version>
-        <tk-mybatis.version>2.1.5</tk-mybatis.version>
-        <tk-mybatis-mapper.version>4.1.5</tk-mybatis-mapper.version>
-        <pagehelper.version>1.2.12</pagehelper.version>
         <jjwt.version>0.9.0</jjwt.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
-            <!-- Mysql数据库驱动 -->
-            <dependency>
-                <groupId>mysql</groupId>
-                <artifactId>mysql-connector-java</artifactId>
-                <version>${mysql.version}</version>
-            </dependency>
-            <!-- Mybatis -->
-            <dependency>
-                <groupId>tk.mybatis</groupId>
-                <artifactId>mapper-spring-boot-starter</artifactId>
-                <version>${tk-mybatis.version}</version>
-            </dependency>
-            <!-- 通用mapper -->
-            <dependency>
-                <groupId>tk.mybatis</groupId>
-                <artifactId>mapper</artifactId>
-                <version>${tk-mybatis-mapper.version}</version>
-            </dependency>
-            <!-- MyBatis分页插件 -->
-            <dependency>
-                <groupId>com.github.pagehelper</groupId>
-                <artifactId>pagehelper-spring-boot-starter</artifactId>
-                <version>${pagehelper.version}</version>
-            </dependency>
             <!-- 登录验证 -->
             <dependency>
                 <groupId>io.jsonwebtoken</groupId>

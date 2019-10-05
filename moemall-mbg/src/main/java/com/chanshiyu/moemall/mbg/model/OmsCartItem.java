@@ -1,5 +1,6 @@
 package com.chanshiyu.moemall.mbg.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.*;
@@ -7,7 +8,7 @@ import lombok.Data;
 
 @Data
 @Table(name = "oms_cart_item")
-public class OmsCartItem {
+public class OmsCartItem implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -111,4 +112,6 @@ public class OmsCartItem {
      */
     @Column(name = "product_attr")
     private String productAttr;
+
+    private static final long serialVersionUID = 1L;
 }

@@ -1,12 +1,13 @@
 package com.chanshiyu.moemall.mbg.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 import lombok.Data;
 
 @Data
 @Table(name = "cms_subject")
-public class CmsSubject {
+public class CmsSubject implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -69,4 +70,6 @@ public class CmsSubject {
     private String categoryName;
 
     private String content;
+
+    private static final long serialVersionUID = 1L;
 }

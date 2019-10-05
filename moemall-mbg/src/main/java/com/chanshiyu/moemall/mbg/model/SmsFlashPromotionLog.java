@@ -1,12 +1,13 @@
 package com.chanshiyu.moemall.mbg.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 import lombok.Data;
 
 @Data
 @Table(name = "sms_flash_promotion_log")
-public class SmsFlashPromotionLog {
+public class SmsFlashPromotionLog implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -31,4 +32,6 @@ public class SmsFlashPromotionLog {
 
     @Column(name = "send_time")
     private Date sendTime;
+
+    private static final long serialVersionUID = 1L;
 }

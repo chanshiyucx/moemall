@@ -1,12 +1,13 @@
 package com.chanshiyu.moemall.mbg.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.persistence.*;
 import lombok.Data;
 
 @Data
 @Table(name = "ums_member_tag")
-public class UmsMemberTag {
+public class UmsMemberTag implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,4 +25,6 @@ public class UmsMemberTag {
      */
     @Column(name = "finish_order_amount")
     private BigDecimal finishOrderAmount;
+
+    private static final long serialVersionUID = 1L;
 }

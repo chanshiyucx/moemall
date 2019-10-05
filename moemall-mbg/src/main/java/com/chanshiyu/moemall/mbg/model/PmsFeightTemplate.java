@@ -1,12 +1,13 @@
 package com.chanshiyu.moemall.mbg.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.persistence.*;
 import lombok.Data;
 
 @Data
 @Table(name = "pms_feight_template")
-public class PmsFeightTemplate {
+public class PmsFeightTemplate implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -41,4 +42,6 @@ public class PmsFeightTemplate {
      * 目的地（省、市）
      */
     private String dest;
+
+    private static final long serialVersionUID = 1L;
 }

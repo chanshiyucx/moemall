@@ -1,5 +1,6 @@
 package com.chanshiyu.moemall.mbg.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.*;
@@ -7,7 +8,7 @@ import lombok.Data;
 
 @Data
 @Table(name = "sms_coupon")
-public class SmsCoupon {
+public class SmsCoupon implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -97,4 +98,6 @@ public class SmsCoupon {
      */
     @Column(name = "member_level")
     private Integer memberLevel;
+
+    private static final long serialVersionUID = 1L;
 }

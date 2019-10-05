@@ -1,12 +1,13 @@
 package com.chanshiyu.moemall.mbg.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 import lombok.Data;
 
 @Data
 @Table(name = "ums_permission")
-public class UmsPermission {
+public class UmsPermission implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -56,4 +57,6 @@ public class UmsPermission {
      * 排序
      */
     private Integer sort;
+
+    private static final long serialVersionUID = 1L;
 }

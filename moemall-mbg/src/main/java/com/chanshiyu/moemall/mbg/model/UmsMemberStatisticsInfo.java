@@ -1,5 +1,6 @@
 package com.chanshiyu.moemall.mbg.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.*;
@@ -7,7 +8,7 @@ import lombok.Data;
 
 @Data
 @Table(name = "ums_member_statistics_info")
-public class UmsMemberStatisticsInfo {
+public class UmsMemberStatisticsInfo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -83,4 +84,6 @@ public class UmsMemberStatisticsInfo {
      */
     @Column(name = "recent_order_time")
     private Date recentOrderTime;
+
+    private static final long serialVersionUID = 1L;
 }

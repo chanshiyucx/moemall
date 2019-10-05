@@ -1,5 +1,6 @@
 package com.chanshiyu.moemall.mbg.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.*;
@@ -7,7 +8,7 @@ import lombok.Data;
 
 @Data
 @Table(name = "pms_product")
-public class PmsProduct {
+public class PmsProduct implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -213,4 +214,6 @@ public class PmsProduct {
      */
     @Column(name = "detail_mobile_html")
     private String detailMobileHtml;
+
+    private static final long serialVersionUID = 1L;
 }

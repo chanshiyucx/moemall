@@ -1,11 +1,12 @@
 package com.chanshiyu.moemall.mbg.model;
 
+import java.io.Serializable;
 import javax.persistence.*;
 import lombok.Data;
 
 @Data
 @Table(name = "ums_integration_consume_setting")
-public class UmsIntegrationConsumeSetting {
+public class UmsIntegrationConsumeSetting implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -33,4 +34,6 @@ public class UmsIntegrationConsumeSetting {
      */
     @Column(name = "coupon_status")
     private Integer couponStatus;
+
+    private static final long serialVersionUID = 1L;
 }

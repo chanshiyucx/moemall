@@ -1,12 +1,13 @@
 package com.chanshiyu.moemall.mbg.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.persistence.*;
 import lombok.Data;
 
 @Data
 @Table(name = "sms_flash_promotion_product_relation")
-public class SmsFlashPromotionProductRelation {
+public class SmsFlashPromotionProductRelation implements Serializable {
     /**
      * 编号
      */
@@ -48,4 +49,6 @@ public class SmsFlashPromotionProductRelation {
      * 排序
      */
     private Integer sort;
+
+    private static final long serialVersionUID = 1L;
 }

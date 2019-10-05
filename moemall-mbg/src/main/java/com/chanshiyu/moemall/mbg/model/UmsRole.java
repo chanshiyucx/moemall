@@ -1,12 +1,13 @@
 package com.chanshiyu.moemall.mbg.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 import lombok.Data;
 
 @Data
 @Table(name = "ums_role")
-public class UmsRole {
+public class UmsRole implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -39,4 +40,6 @@ public class UmsRole {
     private Integer status;
 
     private Integer sort;
+
+    private static final long serialVersionUID = 1L;
 }

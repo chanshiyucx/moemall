@@ -1,11 +1,12 @@
 package com.chanshiyu.moemall.mbg.model;
 
+import java.io.Serializable;
 import javax.persistence.*;
 import lombok.Data;
 
 @Data
 @Table(name = "oms_order_setting")
-public class OmsOrderSetting {
+public class OmsOrderSetting implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -39,4 +40,6 @@ public class OmsOrderSetting {
      */
     @Column(name = "comment_overtime")
     private Integer commentOvertime;
+
+    private static final long serialVersionUID = 1L;
 }

@@ -1,11 +1,12 @@
 package com.chanshiyu.moemall.mbg.model;
 
+import java.io.Serializable;
 import javax.persistence.*;
 import lombok.Data;
 
 @Data
 @Table(name = "pms_product_attribute")
-public class PmsProductAttribute {
+public class PmsProductAttribute implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -66,4 +67,6 @@ public class PmsProductAttribute {
      * 属性的类型；0->规格；1->参数
      */
     private Integer type;
+
+    private static final long serialVersionUID = 1L;
 }

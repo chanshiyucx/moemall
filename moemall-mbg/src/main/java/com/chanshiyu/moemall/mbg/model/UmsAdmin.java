@@ -1,12 +1,13 @@
 package com.chanshiyu.moemall.mbg.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 import lombok.Data;
 
 @Data
 @Table(name = "ums_admin")
-public class UmsAdmin {
+public class UmsAdmin implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -52,4 +53,6 @@ public class UmsAdmin {
      * 帐号启用状态：0->禁用；1->启用
      */
     private Integer status;
+
+    private static final long serialVersionUID = 1L;
 }
