@@ -18,6 +18,7 @@
     <properties>
         <jjwt.version>0.9.0</jjwt.version>
         <swagger.version>2.9.2</swagger.version>
+        <hutool.version>4.6.8</hutool.version>
     </properties>
 
     <dependencies>
@@ -53,7 +54,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- 登录验证 -->
+        <!-- JWT(Json Web Token)登录支持 -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
@@ -75,6 +76,12 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+        </dependency>
+        <!-- Hutool Java工具包 -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool.version}</version>
         </dependency>
     </dependencies>
 
