@@ -37,6 +37,12 @@ mybatis:
   mapper-locations: classpath*:mapper/*.xml
   type-aliases-package: com.chanshiyu.moemall.mbg.model
 
+jwt:
+  tokenHeader: Authorization #JWT存储的请求头
+  secret: mySecret #JWT加解密使用的密钥
+  expiration: 604800 #JWT的超期限时间(60*60*24)
+  tokenHead: Bearer  #JWT负载中拿到开头
+
 swagger:
   title: 萌购后台Api
   description: 萌购后台Api
