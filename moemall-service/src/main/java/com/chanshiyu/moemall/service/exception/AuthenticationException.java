@@ -14,8 +14,8 @@ public class AuthenticationException extends BaseException {
     }
 
     @Override
-    public int getStatus() {
-        return HttpStatus.UNAUTHORIZED.value();
+    public HttpStatus getStatus() {
+        return HttpStatus.UNAUTHORIZED;
     }
 
 }

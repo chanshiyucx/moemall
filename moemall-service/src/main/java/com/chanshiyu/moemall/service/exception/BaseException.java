@@ -1,5 +1,7 @@
 package com.chanshiyu.moemall.service.exception;
 
+import org.springframework.http.HttpStatus;
+
 /**
  * @author SHIYU
  * @data 2019/10/8 18:18
@@ -11,6 +13,6 @@ public abstract class BaseException extends RuntimeException {
         super(message);
     }
 
-    public abstract int getStatus();
+    public abstract HttpStatus getStatus();
 
 }

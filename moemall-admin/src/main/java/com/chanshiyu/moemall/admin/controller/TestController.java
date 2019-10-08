@@ -1,6 +1,7 @@
 package com.chanshiyu.moemall.admin.controller;
 
 import com.chanshiyu.moemall.service.exception.AuthenticationException;
+import com.chanshiyu.moemall.service.exception.BadRequestException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,13 @@ public class TestController {
     @GetMapping("/msg")
     public String test() throws Exception {
         throw new AuthenticationException("账户未授权");
+//        return "hello chanshiyu";
+    }
+
+    @ApiOperation("测试接口2")
+    @GetMapping("/msg2")
+    public String test2() throws Exception {
+        throw new BadRequestException("错误请求");
 //        return "hello chanshiyu";
     }
 

@@ -1,10 +1,11 @@
 package com.chanshiyu.moemall.service.handler;
 
-import com.chanshiyu.moemall.service.exception.AuthenticationException;
+import com.chanshiyu.moemall.service.exception.BaseException;
 import com.chanshiyu.moemall.service.vo.CommonResult;
 import io.micrometer.core.instrument.util.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -32,7 +33,7 @@ public class RestExceptionHandler {
     /**
      * 普通Restful接口参数判断
      * @param e 具体异常
-     * @return 包括的类型
+     * @return 异常消息
      */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -43,7 +44,7 @@ public class RestExceptionHandler {
     /**
      * webflux接口参数判断
      * @param e 具体异常
-     * @return 包括的类型
+     * @return 异常消息
      */
     @ExceptionHandler(WebExchangeBindException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -54,12 +55,12 @@ public class RestExceptionHandler {
     /**
      * 自定义异常
      * @param e 具体异常
-     * @return
+     * @return 异常消息
      */
-    @ExceptionHandler(AuthenticationException.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public CommonResult<String> handleBindException(AuthenticationException e) {
-        return CommonResult.errorMsg(e.getStatus(), e.getMessage());
+    @ExceptionHandler(BaseException.class)
+    public ResponseEntity<CommonResult> handleBindException(BaseException e) {
+        CommonResult commonResult = CommonResult.errorMsg(e.getStatus().value(), e.getMessage());
+        return new ResponseEntity<CommonResult>(commonResult, e.getStatus());
     }
 
     /**
