@@ -16,20 +16,11 @@
     <description>Moe Mall Admin</description>
 
     <dependencies>
+        <!-- Projects Begin -->
         <dependency>
             <groupId>com.chanshiyu</groupId>
             <artifactId>moemall-service</artifactId>
             <version>${project.parent.version}</version>
-        </dependency>
-
-        <!-- Spring Cloud Begin -->
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
     </dependencies>
 

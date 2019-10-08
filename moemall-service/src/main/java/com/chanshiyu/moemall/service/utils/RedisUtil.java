@@ -1,6 +1,5 @@
-package com.chanshiyu.moemall.service.util;
+package com.chanshiyu.moemall.service.utils;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
@@ -8,12 +7,17 @@ import org.springframework.util.CollectionUtils;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * @author SHIYU
+ * @date 2019/8/29 9:18
+ * @description Redis 工具类
+ */
 @SuppressWarnings("unchecked")
 @Component
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class RedisUtil {
 
-    private final RedisTemplate redisTemplate;
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     //=============================common============================
 
@@ -47,7 +51,7 @@ public class RedisUtil {
 
     /**
      * 删除缓存
-     * @param key 可以传一个值 或多个
+     * @param key 可以传一个值或多个
      */
     public void delete(String ...key){
         if(key != null && key.length > 0){
