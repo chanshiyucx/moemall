@@ -5,8 +5,7 @@ import com.chanshiyu.moemall.admin.util.JwtTokenUtil;
 import com.chanshiyu.moemall.mbg.mapper.UmsAdminMapper;
 import com.chanshiyu.moemall.mbg.model.UmsAdmin;
 import com.chanshiyu.moemall.mbg.model.UmsPermission;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,9 +27,9 @@ import java.util.List;
  * UmsAdminService实现类
  * Created by macro on 2018/4/26.
  */
+@Slf4j
 @Service
 public class UmsAdminServiceImpl implements UmsAdminService {
-    private static final Logger LOGGER = LoggerFactory.getLogger(UmsAdminServiceImpl.class);
     @Autowired
     private UserDetailsService userDetailsService;
     @Autowired
@@ -75,20 +74,14 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     }
 
     @Override
-    public String login(String username, String password) {
-        String token = null;
-        try {
-            UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-            if (!passwordEncoder.matches(password, userDetails.getPassword())) {
-                throw new BadCredentialsException("密码不正确");
-            }
-            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-            token = jwtTokenUtil.generateToken(userDetails);
-        } catch (AuthenticationException e) {
-            LOGGER.warn("登录异常:{}", e.getMessage());
+    public String login(String username, String password) throws AuthenticationException {
+        UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+        if (!passwordEncoder.matches(password, userDetails.getPassword())) {
+            throw new BadCredentialsException("密码不正确");
         }
-        return token;
+        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        return jwtTokenUtil.generateToken(userDetails);
     }
 
 

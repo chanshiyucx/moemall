@@ -1,0 +1,55 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: moemall-admin
+  datasource:
+    url: jdbc:mysql://192.168.205.4:3306/moemall
+    hikari:
+      username: root
+      password: 123456
+      driver-class-name: com.mysql.cj.jdbc.Driver
+  redis:
+    database: 0
+    host: 192.168.205.4
+    port: 6379
+    password:
+    timeout: 15000
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 8
+        min-idle: 0
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.205.4:8848
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml
+  type-aliases-package: com.chanshiyu.moemall.mbg.model
+
+jwt:
+  tokenHeader: Authorization
+  tokenHead: Bearer
+  secret: mySecret #JWT加解密使用的密钥
+  expiration: 604800 #超期限时间(60*60*24)
+
+swagger:
+  title: 萌购后台Api
+  description: 萌购后台Api
+  version: 1.0.0
+  terms-of-service-url: https://chanshiyu.com/
+  base-package: com.chanshiyu.moemall.admin
+  contact:
+    name: 蝉時雨
+    url: https://chanshiyu.com/
+    email: me@chanshiyu.com
