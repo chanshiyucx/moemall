@@ -1,4 +1,4 @@
-package com.chanshiyu.moemall.common.config;
+package com.chanshiyu.moemall.admin.config;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;

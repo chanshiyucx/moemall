@@ -20,6 +20,7 @@
         <tk-mybatis.version>2.1.5</tk-mybatis.version>
         <tk-mybatis-mapper.version>4.1.5</tk-mybatis-mapper.version>
         <pagehelper.version>1.2.12</pagehelper.version>
+        <swagger.version>2.9.2</swagger.version>
     </properties>
 
     <dependencies>
@@ -51,6 +52,18 @@
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
             <version>${pagehelper.version}</version>
+        </dependency>
+
+        <!-- Swagger-UI API文档生产工具 -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${swagger.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${swagger.version}</version>
         </dependency>
     </dependencies>
 

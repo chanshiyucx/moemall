@@ -1,4 +1,4 @@
-package com.chanshiyu.moemall.common.util;
+package com.chanshiyu.moemall.service.util;
 
 /**
  * 枚举了一些常用API操作码

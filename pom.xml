@@ -19,6 +19,7 @@
     <modules>
         <module>moemall-common</module>
         <module>moemall-mbg</module>
+        <module>moemall-service</module>
         <module>moemall-admin</module>
     </modules>
 
@@ -27,11 +28,13 @@
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
 
         <!-- Spring Cloud Settings -->
         <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
         <spring-cloud-alibaba.version>2.1.0.RELEASE</spring-cloud-alibaba.version>
+
+        <!-- Maven Settings -->
+        <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -68,6 +71,5 @@
             </plugin>
         </plugins>
     </build>
-
 
 </project>

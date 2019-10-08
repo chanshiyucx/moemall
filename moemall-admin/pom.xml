@@ -18,7 +18,7 @@
     <dependencies>
         <dependency>
             <groupId>com.chanshiyu</groupId>
-            <artifactId>moemall-mbg</artifactId>
+            <artifactId>moemall-service</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
 

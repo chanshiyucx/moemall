@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-
 @Api(tags = "TestController", description = "商品品牌管理")
 @RestController
 @RequestMapping("/test")
@@ -17,7 +15,6 @@ public class TestController {
     @ApiOperation("测试接口")
     @GetMapping("/msg")
     public String test(@RequestParam String message) {
-        HashMap map = new HashMap();
         return "hello " + message;
     }
 

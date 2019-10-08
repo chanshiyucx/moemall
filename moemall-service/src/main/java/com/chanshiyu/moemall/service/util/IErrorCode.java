@@ -1,4 +1,4 @@
-package com.chanshiyu.moemall.common.util;
+package com.chanshiyu.moemall.service.util;
 
 /**
  * 封装API的错误码
