@@ -25,12 +25,6 @@ public class CommonResult<T> {
     /** 分页描述信息 */
     private ResultAttributes attributes;
 
-    private CommonResult(T data) {
-        this.status = HttpStatus.OK.value();
-        this.message = "OK";
-        this.data = data;
-    }
-
     private CommonResult(T data, ResultAttributes attributes) {
         this.status = HttpStatus.OK.value();
         this.message = "OK";
@@ -45,7 +39,7 @@ public class CommonResult<T> {
     }
 
     public static <T> CommonResult<T> ok(T data) {
-        return new CommonResult<>(data);
+        return new CommonResult<>(data, null);
     }
 
     public static <T> CommonResult<T> ok(T data, ResultAttributes attributes) {
