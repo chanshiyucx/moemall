@@ -37,6 +37,12 @@ mybatis:
   mapper-locations: classpath*:mapper/*.xml
   type-aliases-package: com.chanshiyu.moemall.mbg.model
 
+jwt:
+  tokenHeader: Authorization
+  tokenHead: Bearer
+  secret: mySecret
+  expiration: 24h
+
 swagger:
   title: 萌购后台Api
   description: 萌购后台Api

@@ -5,7 +5,6 @@ import com.chanshiyu.moemall.admin.service.UmsAdminService;
 import com.chanshiyu.moemall.mbg.mapper.UmsAdminMapper;
 import com.chanshiyu.moemall.mbg.model.UmsAdmin;
 import com.chanshiyu.moemall.mbg.model.UmsPermission;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,12 +19,13 @@ import java.util.List;
  */
 @Slf4j
 @Service
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class UmsAdminServiceImpl implements UmsAdminService {
 
-    private final UmsAdminMapper umsAdminMapper;
+    @Autowired
+    private UmsAdminMapper umsAdminMapper;
 
-    private final UmsAdminRoleRelationDao umsAdminRoleRelationDao;
+    @Autowired
+    private UmsAdminRoleRelationDao umsAdminRoleRelationDao;
 
     @Override
     public UmsAdmin getAdminByUsername(String username) {

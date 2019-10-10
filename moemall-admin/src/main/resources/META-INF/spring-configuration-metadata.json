@@ -31,6 +31,22 @@
     {
       "name": "swagger.contact.email",
       "type": "java.lang.String"
+    },
+    {
+      "name": "jwt.tokenHeader",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "jwt.tokenHead",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "jwt.secret",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "jwt.expiration",
+      "type": "java.lang.String"
     }
   ]
 }

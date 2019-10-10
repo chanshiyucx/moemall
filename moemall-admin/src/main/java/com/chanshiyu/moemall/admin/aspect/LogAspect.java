@@ -57,9 +57,7 @@ public class LogAspect {
      * @throws Throwable
      */
     @After("log()")
-    public void doAfter() throws Throwable {
-        log.info("=========================================== End ===========================================");
-    }
+    public void doAfter() throws Throwable {}
 
     /**
      * 环绕通知
@@ -85,6 +83,7 @@ public class LogAspect {
     @AfterReturning(returning = "object", pointcut = "log()")
     public void doAfterReturning(Object object) {
         log.info("RESPONSE       : {}", object.toString());
+        log.info("=========================================== End ===========================================");
     }
 
     /**

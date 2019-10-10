@@ -6,7 +6,6 @@ import com.chanshiyu.moemall.mbg.model.UmsPermission;
 import com.chanshiyu.moemall.service.vo.CommonResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,10 +19,10 @@ import java.util.List;
 @Api(tags = "TestController", description = "商品品牌管理")
 @RestController
 @RequestMapping("/test")
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class TestController {
 
-    private final UmsAdminService umsAdminService;
+    @Autowired
+    private UmsAdminService umsAdminService;
 
     @ApiOperation("测试接口")
     @GetMapping("/msg")
