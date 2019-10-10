@@ -11,7 +11,7 @@
  Target Server Version : 80017
  File Encoding         : 65001
 
- Date: 10/10/2019 09:43:05
+ Date: 10/10/2019 16:10:38
 */
 
 SET NAMES utf8mb4;
@@ -1683,7 +1683,6 @@ CREATE TABLE `ums_admin`  (
   `nick_name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '昵称',
   `note` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注信息',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
-  `login_time` datetime(0) NULL DEFAULT NULL COMMENT '最后登录时间',
   `status` int(1) NULL DEFAULT 1 COMMENT '帐号启用状态：0->禁用；1->启用',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台用户表' ROW_FORMAT = Dynamic;
@@ -1691,8 +1690,11 @@ CREATE TABLE `ums_admin`  (
 -- ----------------------------
 -- Records of ums_admin
 -- ----------------------------
-INSERT INTO `ums_admin` VALUES (1, 'test', '$2a$10$NZ5o7r2E.ayT2ZoxgjlI.eJ6OEYqjH7INR/F.mXDbjZJi9HF0YCVG', 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180607/timg.jpg', NULL, '测试账号', NULL, '2018-09-29 13:55:30', '2018-09-29 13:55:39', 1);
-INSERT INTO `ums_admin` VALUES (3, 'admin', '$2a$10$NZ5o7r2E.ayT2ZoxgjlI.eJ6OEYqjH7INR/F.mXDbjZJi9HF0YCVG', 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20190129/170157_yIl3_1767531.jpg', 'admin@163.com', '系统管理员', '系统管理员', '2018-10-08 13:32:47', '2019-03-20 15:38:50', 1);
+INSERT INTO `ums_admin` VALUES (1, 'test', '$2a$10$NZ5o7r2E.ayT2ZoxgjlI.eJ6OEYqjH7INR/F.mXDbjZJi9HF0YCVG', 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180607/timg.jpg', NULL, '测试账号', NULL, '2018-09-29 13:55:30', 1);
+INSERT INTO `ums_admin` VALUES (3, 'admin', '$2a$10$NZ5o7r2E.ayT2ZoxgjlI.eJ6OEYqjH7INR/F.mXDbjZJi9HF0YCVG', 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20190129/170157_yIl3_1767531.jpg', 'admin@163.com', '系统管理员', '系统管理员', '2018-10-08 13:32:47', 1);
+INSERT INTO `ums_admin` VALUES (5, 'chanshiyu', '$2a$10$qSES6MBWkG7/eQEygFMTHupBxBX9nHRC75f8Z3AkWDsBiXPrJz0yG', NULL, NULL, NULL, NULL, '2019-10-10 07:56:01', 1);
+INSERT INTO `ums_admin` VALUES (6, 'shiyu', '$2a$10$zIbbGMv6xLvatJdsvnhk0e2CPXOKybDXS9OxOtFTbwdbe1wEfJWiW', NULL, NULL, NULL, NULL, '2019-10-10 08:44:20', 1);
+INSERT INTO `ums_admin` VALUES (7, 'chan', '$2a$10$ZH7Fv0F8I13zafOa6o7D3uyJ8N4xm3i8V6Di3FgYl37CW9gw9.932', NULL, NULL, NULL, NULL, '2019-10-10 08:45:45', 1);
 
 -- ----------------------------
 -- Table structure for ums_admin_login_log
@@ -1724,6 +1726,7 @@ INSERT INTO `ums_admin_login_log` VALUES (14, 3, '2019-03-12 10:06:19', '0:0:0:0
 INSERT INTO `ums_admin_login_log` VALUES (15, 3, '2019-03-12 10:15:22', '0:0:0:0:0:0:0:1', NULL, NULL);
 INSERT INTO `ums_admin_login_log` VALUES (16, 3, '2019-03-20 15:35:33', '0:0:0:0:0:0:0:1', NULL, NULL);
 INSERT INTO `ums_admin_login_log` VALUES (17, 3, '2019-03-20 15:38:50', '0:0:0:0:0:0:0:1', NULL, NULL);
+INSERT INTO `ums_admin_login_log` VALUES (18, 5, '2019-10-10 09:10:00', '0:0:0:0:0:0:0:1', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for ums_admin_role_relation

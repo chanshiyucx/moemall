@@ -1,5 +1,6 @@
 package com.chanshiyu.moemall.admin.service;
 
+import com.chanshiyu.moemall.admin.dto.UmsAdminParam;
 import com.chanshiyu.moemall.mbg.model.UmsAdmin;
 import com.chanshiyu.moemall.mbg.model.UmsPermission;
 
@@ -20,7 +21,7 @@ public interface UmsAdminService {
     /**
      * 注册功能
      */
-    UmsAdmin register(UmsAdmin umsAdminParam);
+    UmsAdmin register(UmsAdminParam umsAdminParam);
 
     /**
      * 登录功能

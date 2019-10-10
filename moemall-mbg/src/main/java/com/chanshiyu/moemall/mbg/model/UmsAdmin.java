@@ -55,13 +55,6 @@ public class UmsAdmin implements Serializable {
     private Date createTime;
 
     /**
-     * 最后登录时间
-     */
-    @Column(name = "login_time")
-    @ApiModelProperty("最后登录时间")
-    private Date loginTime;
-
-    /**
      * 帐号启用状态：0->禁用；1->启用
      */
     @ApiModelProperty("帐号启用状态：0->禁用；1->启用")

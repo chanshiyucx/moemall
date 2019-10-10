@@ -1,15 +1,33 @@
 package com.chanshiyu.moemall.admin.service.impl;
 
 import com.chanshiyu.moemall.admin.dao.UmsAdminRoleRelationDao;
+import com.chanshiyu.moemall.admin.dto.UmsAdminParam;
+import com.chanshiyu.moemall.admin.security.core.AdminUserDetailsService;
 import com.chanshiyu.moemall.admin.service.UmsAdminService;
+import com.chanshiyu.moemall.admin.utils.JwtTokenUtil;
+import com.chanshiyu.moemall.mbg.mapper.UmsAdminLoginLogMapper;
 import com.chanshiyu.moemall.mbg.mapper.UmsAdminMapper;
 import com.chanshiyu.moemall.mbg.model.UmsAdmin;
+import com.chanshiyu.moemall.mbg.model.UmsAdminLoginLog;
 import com.chanshiyu.moemall.mbg.model.UmsPermission;
+import com.chanshiyu.moemall.service.exception.BadRequestException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import tk.mybatis.mapper.entity.Example;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,7 +45,20 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     @Autowired
     private UmsAdminRoleRelationDao umsAdminRoleRelationDao;
 
+    @Autowired
+    private UmsAdminLoginLogMapper loginLogMapper;
+
+    @Autowired
+    private AdminUserDetailsService adminUserDetailsService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private JwtTokenUtil jwtTokenUtil;
+
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS)
     public UmsAdmin getAdminByUsername(String username) {
         Example example = new Example(UmsAdmin.class);
         Example.Criteria criteria = example.createCriteria();
@@ -36,18 +67,64 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     }
 
     @Override
-    public UmsAdmin register(UmsAdmin umsAdminParam) {
-        return null;
+    @Transactional(propagation = Propagation.REQUIRED)
+    public UmsAdmin register(UmsAdminParam umsAdminParam) {
+        UmsAdmin umsAdmin = new UmsAdmin();
+        BeanUtils.copyProperties(umsAdminParam, umsAdmin);
+        umsAdmin.setCreateTime(new Date());
+        umsAdmin.setStatus(1);
+        // 查询是否有相同用户名的用户
+        Example example = new Example(UmsAdmin.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("username", umsAdmin.getUsername());
+        UmsAdmin result = umsAdminMapper.selectOneByExample(example);
+        if (result != null) {
+            throw new BadRequestException("该用户已存在");
+        }
+        // 将密码进行加密操作
+        String encodePassword = passwordEncoder.encode(umsAdmin.getPassword());
+        umsAdmin.setPassword(encodePassword);
+        umsAdminMapper.insert(umsAdmin);
+        return umsAdmin;
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED)
     public String login(String username, String password) {
-        return null;
+        // 密码需要客户端加密后传递
+        UserDetails userDetails = adminUserDetailsService.loadUserByUsername(username);
+        if(!passwordEncoder.matches(password,userDetails.getPassword())){
+            throw new BadCredentialsException("密码不正确");
+        }
+        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        String token = jwtTokenUtil.generateToken(userDetails);
+        insertLoginLog(username);
+        return token;
     }
 
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS)
     public List<UmsPermission> getPermissionList(Long adminId) {
         return umsAdminRoleRelationDao.getPermissionList(adminId);
+    }
+
+    /**
+     * 添加登录记录
+     * @param username 用户名
+     */
+    private void insertLoginLog(String username) {
+        UmsAdmin admin = getAdminByUsername(username);
+        UmsAdminLoginLog loginLog = new UmsAdminLoginLog();
+        loginLog.setAdminId(admin.getId());
+        loginLog.setCreateTime(new Date());
+        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        assert attributes != null;
+        HttpServletRequest request = attributes.getRequest();
+        loginLog.setIp(request.getRemoteAddr());
+        loginLog.setUserAgent(request.getHeader("user-agent"));
+        log.info("loginLog: {}", loginLog);
+        loginLogMapper.insert(loginLog);
     }
 
 }
