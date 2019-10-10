@@ -1,5 +1,6 @@
 package com.chanshiyu.moemall.admin.service.impl;
 
+import com.chanshiyu.moemall.admin.dao.UmsAdminRoleRelationDao;
 import com.chanshiyu.moemall.admin.service.UmsAdminService;
 import com.chanshiyu.moemall.mbg.mapper.UmsAdminMapper;
 import com.chanshiyu.moemall.mbg.model.UmsAdmin;
@@ -24,6 +25,8 @@ public class UmsAdminServiceImpl implements UmsAdminService {
 
     private final UmsAdminMapper umsAdminMapper;
 
+    private final UmsAdminRoleRelationDao umsAdminRoleRelationDao;
+
     @Override
     public UmsAdmin getAdminByUsername(String username) {
         Example example = new Example(UmsAdmin.class);
@@ -44,7 +47,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
 
     @Override
     public List<UmsPermission> getPermissionList(Long adminId) {
-        return null;
+        return umsAdminRoleRelationDao.getPermissionList(adminId);
     }
 
 }

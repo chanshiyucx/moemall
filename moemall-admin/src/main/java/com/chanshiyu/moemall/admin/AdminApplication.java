@@ -6,7 +6,7 @@ import tk.mybatis.spring.annotation.MapperScan;
 
 @SpringBootApplication(scanBasePackages = "com.chanshiyu.moemall")
 //@EnableDiscoveryClient
-@MapperScan(basePackages = "com.chanshiyu.moemall.mbg.mapper")
+@MapperScan({ "com.chanshiyu.moemall.mbg.mapper", "com.chanshiyu.moemall.admin.dao" })
 public class AdminApplication {
 
     public static void main(String[] args) {
