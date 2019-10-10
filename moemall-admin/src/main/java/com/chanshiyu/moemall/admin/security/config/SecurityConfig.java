@@ -1,8 +1,8 @@
-package com.chanshiyu.moemall.admin.config;
+package com.chanshiyu.moemall.admin.security.config;
 
 import com.chanshiyu.moemall.admin.security.filter.JwtAuthenticationTokenFilter;
-import com.chanshiyu.moemall.admin.security.browser.RestAuthenticationEntryPoint;
-import com.chanshiyu.moemall.admin.security.browser.RestfulAccessDeniedHandler;
+import com.chanshiyu.moemall.admin.security.component.RestAuthenticationEntryPoint;
+import com.chanshiyu.moemall.admin.security.component.RestfulAccessDeniedHandler;
 import com.chanshiyu.moemall.admin.security.core.AdminUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

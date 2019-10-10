@@ -1,4 +1,4 @@
-package com.chanshiyu.moemall.admin.security.browser;
+package com.chanshiyu.moemall.admin.security.component;
 
 import cn.hutool.json.JSONUtil;
 import com.chanshiyu.moemall.service.vo.CommonResult;

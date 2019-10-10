@@ -1,10 +1,12 @@
 package com.chanshiyu.moemall.admin.service.impl;
 
+import cn.hutool.http.useragent.UserAgent;
+import cn.hutool.http.useragent.UserAgentUtil;
 import com.chanshiyu.moemall.admin.dao.UmsAdminRoleRelationDao;
 import com.chanshiyu.moemall.admin.dto.UmsAdminParam;
 import com.chanshiyu.moemall.admin.security.core.AdminUserDetailsService;
+import com.chanshiyu.moemall.admin.security.utils.JwtTokenUtil;
 import com.chanshiyu.moemall.admin.service.UmsAdminService;
-import com.chanshiyu.moemall.admin.utils.JwtTokenUtil;
 import com.chanshiyu.moemall.mbg.mapper.UmsAdminLoginLogMapper;
 import com.chanshiyu.moemall.mbg.mapper.UmsAdminMapper;
 import com.chanshiyu.moemall.mbg.model.UmsAdmin;
@@ -122,7 +124,9 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         assert attributes != null;
         HttpServletRequest request = attributes.getRequest();
         loginLog.setIp(request.getRemoteAddr());
-        loginLog.setUserAgent(request.getHeader("user-agent"));
+        UserAgent ua = UserAgentUtil.parse(request.getHeader("user-agent"));
+        String userAgent = ua.getBrowser().toString() + "/" + ua.getVersion() + ", " + ua.getOs().toString();
+        loginLog.setUserAgent(userAgent);
         log.info("loginLog: {}", loginLog);
         loginLogMapper.insert(loginLog);
     }

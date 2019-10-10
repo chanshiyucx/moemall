@@ -1,5 +1,6 @@
 package com.chanshiyu.moemall.admin.controller;
 
+import com.chanshiyu.moemall.admin.dto.UmsAdminLoginParam;
 import com.chanshiyu.moemall.admin.dto.UmsAdminParam;
 import com.chanshiyu.moemall.admin.service.UmsAdminService;
 import com.chanshiyu.moemall.mbg.model.UmsAdmin;
@@ -54,8 +55,8 @@ public class UmsAdminController {
 
     @ApiOperation(value = "用户登录")
     @PostMapping("/login")
-    public CommonResult<String> login(@Valid @RequestBody UmsAdminParam umsAdminParam) {
-        String token = umsAdminService.login(umsAdminParam.getUsername(), umsAdminParam.getPassword());
+    public CommonResult<String> login(@Valid @RequestBody UmsAdminLoginParam umsAdminLoginParam) {
+        String token = umsAdminService.login(umsAdminLoginParam.getUsername(), umsAdminLoginParam.getPassword());
         return CommonResult.ok(token);
     }
 

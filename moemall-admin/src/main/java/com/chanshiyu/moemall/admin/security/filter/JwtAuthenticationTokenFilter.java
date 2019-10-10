@@ -1,6 +1,6 @@
 package com.chanshiyu.moemall.admin.security.filter;
 
-import com.chanshiyu.moemall.admin.utils.JwtTokenUtil;
+import com.chanshiyu.moemall.admin.security.utils.JwtTokenUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

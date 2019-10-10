@@ -1,4 +1,10 @@
-package com.chanshiyu.moemall.admin.utils;
+package com.chanshiyu.moemall.admin.security.utils;
+
+/**
+ * @author SHIYU
+ * @date 2019/10/10 18:25
+ * @description
+ */
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
