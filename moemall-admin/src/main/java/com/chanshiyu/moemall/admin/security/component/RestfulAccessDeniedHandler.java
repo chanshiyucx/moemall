@@ -2,7 +2,6 @@ package com.chanshiyu.moemall.admin.security.component;
 
 import cn.hutool.json.JSONUtil;
 import com.chanshiyu.moemall.service.vo.CommonResult;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.stereotype.Component;
@@ -24,7 +23,7 @@ public class RestfulAccessDeniedHandler implements AccessDeniedHandler {
     public void handle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AccessDeniedException e) throws IOException, ServletException {
         httpServletResponse.setCharacterEncoding("UTF-8");
         httpServletResponse.setContentType("application/json");
-        httpServletResponse.getWriter().println(JSONUtil.parse(CommonResult.errorMsg(HttpStatus.FORBIDDEN.value(), e.getMessage())));
+        httpServletResponse.getWriter().println(JSONUtil.parse(CommonResult.forbidden(e.getMessage())));
         httpServletResponse.getWriter().flush();
     }
 

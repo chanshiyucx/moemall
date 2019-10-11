@@ -3,8 +3,8 @@ package com.chanshiyu.moemall.admin.service.impl;
 import cn.hutool.http.useragent.UserAgent;
 import cn.hutool.http.useragent.UserAgentUtil;
 import com.chanshiyu.moemall.admin.dao.UmsAdminRoleRelationDao;
-import com.chanshiyu.moemall.admin.dto.UmsAdminParam;
-import com.chanshiyu.moemall.admin.security.core.AdminUserDetailsService;
+import com.chanshiyu.moemall.admin.dto.params.UmsAdminParam;
+import com.chanshiyu.moemall.admin.dto.vo.UmsAdminLoginVO;
 import com.chanshiyu.moemall.admin.security.utils.JwtTokenUtil;
 import com.chanshiyu.moemall.admin.service.UmsAdminService;
 import com.chanshiyu.moemall.mbg.mapper.UmsAdminLoginLogMapper;
@@ -20,6 +20,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -45,13 +46,13 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     private UmsAdminMapper umsAdminMapper;
 
     @Autowired
-    private UmsAdminRoleRelationDao umsAdminRoleRelationDao;
-
-    @Autowired
     private UmsAdminLoginLogMapper loginLogMapper;
 
     @Autowired
-    private AdminUserDetailsService adminUserDetailsService;
+    private UmsAdminRoleRelationDao umsAdminRoleRelationDao;
+
+    @Autowired
+    private UserDetailsService userDetailsService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -92,17 +93,23 @@ public class UmsAdminServiceImpl implements UmsAdminService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
-    public String login(String username, String password) {
+    public UmsAdminLoginVO login(String username, String password) {
         // 密码需要客户端加密后传递
-        UserDetails userDetails = adminUserDetailsService.loadUserByUsername(username);
-        if(!passwordEncoder.matches(password,userDetails.getPassword())){
+        UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+        if(!passwordEncoder.matches(password, userDetails.getPassword())){
             throw new BadCredentialsException("密码不正确");
         }
         UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String token = jwtTokenUtil.generateToken(userDetails);
+        // 获取用户详细信息
+        UmsAdmin umsAdmin = getAdminByUsername(username);
+        UmsAdminLoginVO umsAdminLoginVO = new UmsAdminLoginVO();
+        BeanUtils.copyProperties(umsAdmin, umsAdminLoginVO);
+        umsAdminLoginVO.setToken(token);
+        // 写入登录日志
         insertLoginLog(username);
-        return token;
+        return umsAdminLoginVO;
     }
 
     @Override

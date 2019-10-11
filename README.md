@@ -16,9 +16,9 @@
 | JWT                  | 0.9.0  | JWT 登录支持     |
 | Lombok               | 1.18.8 | 简化对象封装工具 |
 | Swagger-UI           | 2.9.2  | 文档生产工具     |
+| Redis                | 2.1.10 | 分布式缓存       |
 | Elasticsearch        | -      | 搜索引擎         |
 | RabbitMq             | -      | 消息队列         |
-| Redis                | -      | 分布式缓存       |
 | Docker               | -      | 应用容器引擎     |
 
 ## 通用服务

@@ -2,7 +2,6 @@ package com.chanshiyu.moemall.admin.security.component;
 
 import cn.hutool.json.JSONUtil;
 import com.chanshiyu.moemall.service.vo.CommonResult;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
@@ -24,7 +23,7 @@ public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
     public void commence(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
         httpServletResponse.setCharacterEncoding("UTF-8");
         httpServletResponse.setContentType("application/json");
-        httpServletResponse.getWriter().println(JSONUtil.parse(CommonResult.errorMsg(HttpStatus.UNAUTHORIZED.value(), e.getMessage())));
+        httpServletResponse.getWriter().println(JSONUtil.parse(CommonResult.unauthorized(e.getMessage())));
         httpServletResponse.getWriter().flush();
     }
 

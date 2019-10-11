@@ -1,11 +1,5 @@
 package com.chanshiyu.moemall.admin.security.utils;
 
-/**
- * @author SHIYU
- * @date 2019/10/10 18:25
- * @description
- */
-
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -14,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.HttpServletRequest;
 import java.time.Duration;
 import java.util.Date;
 import java.util.HashMap;
@@ -39,11 +34,30 @@ public class JwtTokenUtil {
 
     private static final String CLAIM_KEY_CREATED = "created";
 
+    @Value("${jwt.tokenHeader}")
+    private String tokenHeader;
+
+    @Value("${jwt.tokenHead}")
+    private String tokenHead;
+
     @Value("${jwt.secret}")
     private String secret;
 
     @Value("${jwt.expiration}")
     private Duration expiration;
+
+    /**
+     * 获取请求头部的token
+     * @param request
+     * @return
+     */
+    public String getToken(HttpServletRequest request) {
+        String authHeader = request.getHeader(tokenHeader);
+        if (authHeader != null && authHeader.startsWith(tokenHead)) {
+            return authHeader.substring(tokenHead.length());
+        }
+        return null;
+    }
 
     /**
      * 生成JWT的token

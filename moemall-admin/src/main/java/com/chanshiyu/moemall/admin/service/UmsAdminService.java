@@ -1,6 +1,7 @@
 package com.chanshiyu.moemall.admin.service;
 
-import com.chanshiyu.moemall.admin.dto.UmsAdminParam;
+import com.chanshiyu.moemall.admin.dto.params.UmsAdminParam;
+import com.chanshiyu.moemall.admin.dto.vo.UmsAdminLoginVO;
 import com.chanshiyu.moemall.mbg.model.UmsAdmin;
 import com.chanshiyu.moemall.mbg.model.UmsPermission;
 
@@ -26,7 +27,7 @@ public interface UmsAdminService {
     /**
      * 登录功能
      */
-    String login(String username, String password);
+    UmsAdminLoginVO login(String username, String password);
 
     /**
      * 获取用户所有权限（包括角色权限和+-权限）

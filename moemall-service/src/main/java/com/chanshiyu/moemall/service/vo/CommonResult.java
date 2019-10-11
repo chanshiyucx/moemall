@@ -32,10 +32,9 @@ public class CommonResult<T> {
         this.attributes = attributes;
     }
 
-    private CommonResult(Integer status, String message, T data) {
+    private CommonResult(Integer status, String message) {
         this.status = status;
         this.message = message;
-        this.data = data;
     }
 
     public static <T> CommonResult<T> ok(T data) {
@@ -46,12 +45,20 @@ public class CommonResult<T> {
         return new CommonResult<>(data, attributes);
     }
 
+    public static <T> CommonResult<T> unauthorized(String message) {
+        return new CommonResult<>(HttpStatus.UNAUTHORIZED.value(), message);
+    }
+
+    public static <T> CommonResult<T> forbidden(String message) {
+        return new CommonResult<>(HttpStatus.FORBIDDEN.value(), message);
+    }
+
     public static <T> CommonResult<T> errorMsg(String message) {
-        return new CommonResult<>(HttpStatus.INTERNAL_SERVER_ERROR.value(), message, null);
+        return new CommonResult<>(HttpStatus.INTERNAL_SERVER_ERROR.value(), message);
     }
 
     public static <T> CommonResult<T> errorMsg(int status, String message) {
-        return new CommonResult<>(status, message, null);
+        return new CommonResult<>(status, message);
     }
 
 }

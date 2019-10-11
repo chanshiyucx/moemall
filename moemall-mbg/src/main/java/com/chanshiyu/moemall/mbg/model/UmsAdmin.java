@@ -11,22 +11,31 @@ import lombok.Data;
 @ApiModel("后台用户表")
 @Table(name = "ums_admin")
 public class UmsAdmin implements Serializable {
+    /**
+     * 主键ID
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @ApiModelProperty("")
+    @ApiModelProperty("主键ID")
     private Long id;
 
-    @ApiModelProperty("")
+    /**
+     * 用户名
+     */
+    @ApiModelProperty("用户名")
     private String username;
 
-    @ApiModelProperty("")
+    /**
+     * 密码
+     */
+    @ApiModelProperty("密码")
     private String password;
 
     /**
      * 头像
      */
     @ApiModelProperty("头像")
-    private String icon;
+    private String avatar;
 
     /**
      * 邮箱

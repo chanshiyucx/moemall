@@ -28,7 +28,6 @@ public class AdminUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UmsAdmin admin = umsAdminService.getAdminByUsername(username);
         List<UmsPermission> permissionList = umsAdminService.getPermissionList(admin.getId());
-        log.info("permission: {}", permissionList);
         return new AdminUserDetails(admin, permissionList);
     }
 
