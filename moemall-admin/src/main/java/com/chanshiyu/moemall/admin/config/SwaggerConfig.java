@@ -74,7 +74,7 @@ public class SwaggerConfig {
     private List<SecurityContext> securityContexts() {
         // 设置需要登录认证的路径
         List<SecurityContext> result = new ArrayList<>();
-        result.add(getContextByPath("/admin/msg"));
+        result.add(getContextByPath("/.*"));
         return result;
     }
 
@@ -86,10 +86,10 @@ public class SwaggerConfig {
     }
 
     private List<SecurityReference> defaultAuth() {
-        List<SecurityReference> result = new ArrayList<>();
         AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
         AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
         authorizationScopes[0] = authorizationScope;
+        List<SecurityReference> result = new ArrayList<>();
         result.add(new SecurityReference("Authorization", authorizationScopes));
         return result;
     }

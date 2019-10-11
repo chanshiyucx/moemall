@@ -31,6 +31,12 @@ public class UmsAdminController {
     }
 
     @ApiOperation("测试接口")
+    @GetMapping("/msg2")
+    public CommonResult<String> msg2() throws Exception {
+        return CommonResult.ok("hello msg222222");
+    }
+
+    @ApiOperation("测试接口")
     @GetMapping("/user/{username}")
     public CommonResult<UmsAdmin> user(@PathVariable String username) throws Exception {
         log.info("username: {}", username);
