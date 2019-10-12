@@ -56,3 +56,9 @@ swagger:
     name: 蝉時雨
     url: https://chanshiyu.com/
     email: me@chanshiyu.com
+
+logging:
+  level:
+    root: info
+    com.chanshiyu.moemall: debug
+  path: C:/Users/11245/Documents/logs

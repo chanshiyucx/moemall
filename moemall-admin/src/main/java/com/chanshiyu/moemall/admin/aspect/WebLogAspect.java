@@ -1,5 +1,6 @@
 package com.chanshiyu.moemall.admin.aspect;
 
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.URLUtil;
 import cn.hutool.json.JSONUtil;
@@ -71,7 +72,7 @@ public class WebLogAspect {
         webLog.setMethod(request.getMethod());
         webLog.setParameter(getParameter(method, joinPoint.getArgs()));
         webLog.setResult(result);
-        webLog.setStartTime(startTime);
+        webLog.setStartTime(DateUtil.date(startTime).toString());
         webLog.setSpendTime((int) (endTime - startTime));
         webLog.setUri(request.getRequestURI());
         webLog.setUrl(request.getRequestURL().toString());

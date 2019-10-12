@@ -23,7 +23,7 @@ public class WebLog {
     /**
      * 操作时间
      */
-    private Long startTime;
+    private String startTime;
 
     /**
      * 消耗时间
