@@ -1,4 +1,4 @@
-package com.chanshiyu.moemall.admin.dto.bo;
+package com.chanshiyu.moemall.admin.model.bo;
 
 import lombok.Data;
 

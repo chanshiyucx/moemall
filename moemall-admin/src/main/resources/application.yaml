@@ -59,6 +59,5 @@ swagger:
 
 logging:
   level:
-    root: info
-    com.chanshiyu.moemall: debug
+    com.chanshiyu.moemall: info
   path: C:/Users/11245/Documents/logs

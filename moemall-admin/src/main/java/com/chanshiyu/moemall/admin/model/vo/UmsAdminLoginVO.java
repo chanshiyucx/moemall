@@ -1,4 +1,4 @@
-package com.chanshiyu.moemall.admin.dto.vo;
+package com.chanshiyu.moemall.admin.model.vo;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

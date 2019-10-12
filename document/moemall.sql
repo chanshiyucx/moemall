@@ -11,7 +11,7 @@
  Target Server Version : 80017
  File Encoding         : 65001
 
- Date: 11/10/2019 16:51:32
+ Date: 12/10/2019 14:06:57
 */
 
 SET NAMES utf8mb4;
@@ -1678,7 +1678,7 @@ CREATE TABLE `ums_admin`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
   `username` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户名',
   `password` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '密码',
-  `icon` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '头像',
+  `avatar` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '头像',
   `email` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '邮箱',
   `nick_name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '昵称',
   `note` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注信息',
@@ -1729,6 +1729,16 @@ INSERT INTO `ums_admin_login_log` VALUES (36, 5, '2019-10-11 02:47:12', '0:0:0:0
 INSERT INTO `ums_admin_login_log` VALUES (37, 5, '2019-10-11 02:47:20', '0:0:0:0:0:0:0:1', NULL, 'Unknown/null, Unknown');
 INSERT INTO `ums_admin_login_log` VALUES (38, 5, '2019-10-11 09:02:42', '0:0:0:0:0:0:0:1', NULL, 'Unknown/null, Unknown');
 INSERT INTO `ums_admin_login_log` VALUES (39, 3, '2019-10-11 09:02:45', '192.168.10.242', NULL, 'Chrome/77.0.3865.90, Windows 10 or Windows Server 2016');
+INSERT INTO `ums_admin_login_log` VALUES (40, 3, '2019-10-11 10:07:10', '192.168.10.242', NULL, 'Chrome/77.0.3865.90, Windows 10 or Windows Server 2016');
+INSERT INTO `ums_admin_login_log` VALUES (41, 3, '2019-10-11 10:09:40', '192.168.10.242', NULL, 'Chrome/77.0.3865.90, Windows 10 or Windows Server 2016');
+INSERT INTO `ums_admin_login_log` VALUES (42, 3, '2019-10-11 11:22:57', '192.168.10.242', NULL, 'Chrome/77.0.3865.90, Windows 10 or Windows Server 2016');
+INSERT INTO `ums_admin_login_log` VALUES (43, 3, '2019-10-11 11:32:39', '192.168.10.242', NULL, 'Chrome/77.0.3865.90, Windows 10 or Windows Server 2016');
+INSERT INTO `ums_admin_login_log` VALUES (44, 3, '2019-10-11 11:36:10', '192.168.10.242', NULL, 'Chrome/77.0.3865.90, Windows 10 or Windows Server 2016');
+INSERT INTO `ums_admin_login_log` VALUES (45, 3, '2019-10-11 11:39:22', '192.168.10.242', NULL, 'Chrome/77.0.3865.90, Windows 10 or Windows Server 2016');
+INSERT INTO `ums_admin_login_log` VALUES (46, 3, '2019-10-11 11:40:30', '192.168.10.242', NULL, 'Chrome/77.0.3865.90, Windows 10 or Windows Server 2016');
+INSERT INTO `ums_admin_login_log` VALUES (47, 3, '2019-10-11 11:49:34', '192.168.10.242', NULL, 'Chrome/77.0.3865.90, Windows 10 or Windows Server 2016');
+INSERT INTO `ums_admin_login_log` VALUES (48, 3, '2019-10-12 04:03:02', '0:0:0:0:0:0:0:1', NULL, 'Chrome/77.0.3865.90, Windows 10 or Windows Server 2016');
+INSERT INTO `ums_admin_login_log` VALUES (49, 5, '2019-10-12 04:10:06', '0:0:0:0:0:0:0:1', NULL, 'Unknown/null, Unknown');
 
 -- ----------------------------
 -- Table structure for ums_admin_role_relation
@@ -2008,7 +2018,6 @@ CREATE TABLE `ums_permission`  (
   `pid` bigint(20) NULL DEFAULT NULL COMMENT '父级权限id',
   `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '名称',
   `value` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '权限值',
-  `uri` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '前端资源路径',
   `status` int(1) NULL DEFAULT NULL COMMENT '启用状态；0->禁用；1->启用',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
@@ -2017,23 +2026,23 @@ CREATE TABLE `ums_permission`  (
 -- ----------------------------
 -- Records of ums_permission
 -- ----------------------------
-INSERT INTO `ums_permission` VALUES (1, 0, '商品', NULL, NULL, 1, '2018-09-29 16:15:14');
-INSERT INTO `ums_permission` VALUES (2, 1, '商品列表', 'pms:product:read', '/pms/product/index', 1, '2018-09-29 16:17:01');
-INSERT INTO `ums_permission` VALUES (3, 1, '添加商品', 'pms:product:create', '/pms/product/add', 1, '2018-09-29 16:18:51');
-INSERT INTO `ums_permission` VALUES (4, 1, '商品分类', 'pms:productCategory:read', '/pms/productCate/index', 1, '2018-09-29 16:23:07');
-INSERT INTO `ums_permission` VALUES (5, 1, '商品类型', 'pms:productAttribute:read', '/pms/productAttr/index', 1, '2018-09-29 16:24:43');
-INSERT INTO `ums_permission` VALUES (6, 1, '品牌管理', 'pms:brand:read', '/pms/brand/index', 1, '2018-09-29 16:25:45');
-INSERT INTO `ums_permission` VALUES (7, 2, '编辑商品', 'pms:product:update', '/pms/product/updateProduct', 1, '2018-09-29 16:34:23');
-INSERT INTO `ums_permission` VALUES (8, 2, '删除商品', 'pms:product:delete', '/pms/product/delete', 1, '2018-09-29 16:38:33');
-INSERT INTO `ums_permission` VALUES (9, 4, '添加商品分类', 'pms:productCategory:create', '/pms/productCate/create', 1, '2018-09-29 16:43:23');
-INSERT INTO `ums_permission` VALUES (10, 4, '修改商品分类', 'pms:productCategory:update', '/pms/productCate/update', 1, '2018-09-29 16:43:55');
-INSERT INTO `ums_permission` VALUES (11, 4, '删除商品分类', 'pms:productCategory:delete', '/pms/productAttr/delete', 1, '2018-09-29 16:44:38');
-INSERT INTO `ums_permission` VALUES (12, 5, '添加商品类型', 'pms:productAttribute:create', '/pms/productAttr/create', 1, '2018-09-29 16:45:25');
-INSERT INTO `ums_permission` VALUES (13, 5, '修改商品类型', 'pms:productAttribute:update', '/pms/productAttr/update', 1, '2018-09-29 16:48:08');
-INSERT INTO `ums_permission` VALUES (14, 5, '删除商品类型', 'pms:productAttribute:delete', '/pms/productAttr/delete', 1, '2018-09-29 16:48:44');
-INSERT INTO `ums_permission` VALUES (15, 6, '添加品牌', 'pms:brand:create', '/pms/brand/add', 1, '2018-09-29 16:49:34');
-INSERT INTO `ums_permission` VALUES (16, 6, '修改品牌', 'pms:brand:update', '/pms/brand/update', 1, '2018-09-29 16:50:55');
-INSERT INTO `ums_permission` VALUES (17, 6, '删除品牌', 'pms:brand:delete', '/pms/brand/delete', 1, '2018-09-29 16:50:59');
+INSERT INTO `ums_permission` VALUES (1, 0, '商品管理', NULL, 1, '2018-09-29 16:15:14');
+INSERT INTO `ums_permission` VALUES (2, 1, '商品列表', 'pms:product:read', 1, '2018-09-29 16:17:01');
+INSERT INTO `ums_permission` VALUES (3, 2, '添加商品', 'pms:product:create', 1, '2018-09-29 16:18:51');
+INSERT INTO `ums_permission` VALUES (4, 1, '商品分类', 'pms:productCategory:read', 1, '2018-09-29 16:23:07');
+INSERT INTO `ums_permission` VALUES (5, 1, '商品类型', 'pms:productAttribute:read', 1, '2018-09-29 16:24:43');
+INSERT INTO `ums_permission` VALUES (6, 1, '品牌管理', 'pms:brand:read', 1, '2018-09-29 16:25:45');
+INSERT INTO `ums_permission` VALUES (7, 2, '编辑商品', 'pms:product:update', 1, '2018-09-29 16:34:23');
+INSERT INTO `ums_permission` VALUES (8, 2, '删除商品', 'pms:product:delete', 1, '2018-09-29 16:38:33');
+INSERT INTO `ums_permission` VALUES (9, 4, '添加商品分类', 'pms:productCategory:create', 1, '2018-09-29 16:43:23');
+INSERT INTO `ums_permission` VALUES (10, 4, '修改商品分类', 'pms:productCategory:update', 1, '2018-09-29 16:43:55');
+INSERT INTO `ums_permission` VALUES (11, 4, '删除商品分类', 'pms:productCategory:delete', 1, '2018-09-29 16:44:38');
+INSERT INTO `ums_permission` VALUES (12, 5, '添加商品类型', 'pms:productAttribute:create', 1, '2018-09-29 16:45:25');
+INSERT INTO `ums_permission` VALUES (13, 5, '修改商品类型', 'pms:productAttribute:update', 1, '2018-09-29 16:48:08');
+INSERT INTO `ums_permission` VALUES (14, 5, '删除商品类型', 'pms:productAttribute:delete', 1, '2018-09-29 16:48:44');
+INSERT INTO `ums_permission` VALUES (15, 6, '添加品牌', 'pms:brand:create', 1, '2018-09-29 16:49:34');
+INSERT INTO `ums_permission` VALUES (16, 6, '修改品牌', 'pms:brand:update', 1, '2018-09-29 16:50:55');
+INSERT INTO `ums_permission` VALUES (17, 6, '删除品牌', 'pms:brand:delete', 1, '2018-09-29 16:50:59');
 
 -- ----------------------------
 -- Table structure for ums_role

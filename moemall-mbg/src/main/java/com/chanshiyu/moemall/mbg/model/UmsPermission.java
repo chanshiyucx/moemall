@@ -2,10 +2,11 @@ package com.chanshiyu.moemall.mbg.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.*;
-import lombok.Data;
 
 @Data
 @ApiModel("后台用户权限表")
@@ -33,12 +34,6 @@ public class UmsPermission implements Serializable {
      */
     @ApiModelProperty("权限值")
     private String value;
-
-    /**
-     * 前端资源路径
-     */
-    @ApiModelProperty("前端资源路径")
-    private String uri;
 
     /**
      * 启用状态；0->禁用；1->启用

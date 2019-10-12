@@ -27,7 +27,7 @@ public class RestExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public CommonResult<String> defaultErrorHandler(Exception e) {
         e.printStackTrace();
-        return CommonResult.errorMsg(e.getMessage());
+        return CommonResult.failed(e.getMessage());
     }
 
     /**
@@ -38,7 +38,7 @@ public class RestExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public CommonResult<String> argumentNotValidException(MethodArgumentNotValidException e) {
-        return CommonResult.errorMsg(getValidException(e));
+        return CommonResult.failed(getValidException(e));
     }
 
     /**
@@ -49,7 +49,7 @@ public class RestExceptionHandler {
     @ExceptionHandler(WebExchangeBindException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public CommonResult<String> handleBindException(WebExchangeBindException e) {
-        return CommonResult.errorMsg(getValidException(e));
+        return CommonResult.failed(getValidException(e));
     }
 
     /**
@@ -59,7 +59,7 @@ public class RestExceptionHandler {
      */
     @ExceptionHandler(BaseException.class)
     public ResponseEntity<CommonResult> handleBindException(BaseException e) {
-        CommonResult commonResult = CommonResult.errorMsg(e.getStatus().value(), e.getMessage());
+        CommonResult commonResult = CommonResult.failed(e.getStatus().value(), e.getMessage());
         return new ResponseEntity<CommonResult>(commonResult, e.getStatus());
     }
 

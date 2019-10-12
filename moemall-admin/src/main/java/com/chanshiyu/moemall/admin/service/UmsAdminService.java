@@ -1,7 +1,7 @@
 package com.chanshiyu.moemall.admin.service;
 
-import com.chanshiyu.moemall.admin.dto.params.UmsAdminParam;
-import com.chanshiyu.moemall.admin.dto.vo.UmsAdminLoginVO;
+import com.chanshiyu.moemall.admin.model.params.UmsAdminParam;
+import com.chanshiyu.moemall.admin.model.vo.UmsAdminLoginVO;
 import com.chanshiyu.moemall.mbg.model.UmsAdmin;
 import com.chanshiyu.moemall.mbg.model.UmsPermission;
 
@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * @author SHIYU
  * @date 2019/10/9 16:48
- * @description 后台管理员Service
+ * @description 后台用户Service
  */
 public interface UmsAdminService {
 
@@ -30,7 +30,7 @@ public interface UmsAdminService {
     UmsAdminLoginVO login(String username, String password);
 
     /**
-     * 获取用户所有权限（包括角色权限和+-权限）
+     * 获取用户所有权限
      */
     List<UmsPermission> getPermissionList(Long adminId);
 

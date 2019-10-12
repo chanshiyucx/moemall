@@ -9,7 +9,7 @@
     <contextName>${APP_NAME}</contextName>
 
     <!-- Info 日志文件配置 -->
-    <appender name="INFOLOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="INFO_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!-- 过滤 Error 级别日志-->
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <level>ERROR</level>
@@ -26,7 +26,7 @@
     </appender>
 
     <!-- Error 日志文件配置 -->
-    <appender name="ERRORLOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="ERROR_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!-- 过滤 Info 级别日志-->
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>ERROR</level>
@@ -43,7 +43,7 @@
     <!-- 将上述配置引入并控制日志级别 -->
     <root level="INFO">
         <appender-ref ref="CONSOLE" />
-        <appender-ref ref="INFOLOG" />
-        <appender-ref ref="ERRORLOG" />
+        <appender-ref ref="INFO_LOG" />
+        <appender-ref ref="ERROR_LOG" />
     </root>
 </configuration>

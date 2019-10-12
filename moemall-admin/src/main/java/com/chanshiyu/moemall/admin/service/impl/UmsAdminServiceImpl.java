@@ -3,8 +3,8 @@ package com.chanshiyu.moemall.admin.service.impl;
 import cn.hutool.http.useragent.UserAgent;
 import cn.hutool.http.useragent.UserAgentUtil;
 import com.chanshiyu.moemall.admin.dao.UmsAdminRoleRelationDao;
-import com.chanshiyu.moemall.admin.dto.params.UmsAdminParam;
-import com.chanshiyu.moemall.admin.dto.vo.UmsAdminLoginVO;
+import com.chanshiyu.moemall.admin.model.params.UmsAdminParam;
+import com.chanshiyu.moemall.admin.model.vo.UmsAdminLoginVO;
 import com.chanshiyu.moemall.admin.security.utils.JwtTokenUtil;
 import com.chanshiyu.moemall.admin.service.UmsAdminService;
 import com.chanshiyu.moemall.mbg.mapper.UmsAdminLoginLogMapper;
@@ -36,7 +36,7 @@ import java.util.List;
 /**
  * @author SHIYU
  * @date 2019/10/9 16:49
- * @description
+ * @description  后台用户Service实现类
  */
 @Slf4j
 @Service

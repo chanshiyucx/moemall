@@ -1,7 +1,6 @@
 package com.chanshiyu.moemall.service.vo;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 
 /**
@@ -10,7 +9,6 @@ import org.springframework.http.HttpStatus;
  * @description 自定义响应数据结构
  */
 @Data
-@NoArgsConstructor
 public class CommonResult<T> {
 
     /** 响应业务状态 */
@@ -25,6 +23,11 @@ public class CommonResult<T> {
     /** 分页描述信息 */
     private ResultAttributes attributes;
 
+    private CommonResult() {
+        this.status = HttpStatus.OK.value();
+        this.message = "OK";
+    }
+
     private CommonResult(T data, ResultAttributes attributes) {
         this.status = HttpStatus.OK.value();
         this.message = "OK";
@@ -35,6 +38,10 @@ public class CommonResult<T> {
     private CommonResult(Integer status, String message) {
         this.status = status;
         this.message = message;
+    }
+
+    public static <T> CommonResult<T> ok() {
+        return new CommonResult<>();
     }
 
     public static <T> CommonResult<T> ok(T data) {
@@ -53,11 +60,15 @@ public class CommonResult<T> {
         return new CommonResult<>(HttpStatus.FORBIDDEN.value(), message);
     }
 
-    public static <T> CommonResult<T> errorMsg(String message) {
+    public static <T> CommonResult<T> failed() {
+        return new CommonResult<>(HttpStatus.INTERNAL_SERVER_ERROR.value(), "操作失败");
+    }
+
+    public static <T> CommonResult<T> failed(String message) {
         return new CommonResult<>(HttpStatus.INTERNAL_SERVER_ERROR.value(), message);
     }
 
-    public static <T> CommonResult<T> errorMsg(int status, String message) {
+    public static <T> CommonResult<T> failed(int status, String message) {
         return new CommonResult<>(status, message);
     }
 
