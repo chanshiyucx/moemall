@@ -33,7 +33,7 @@ public class UmsRoleController {
         if (count > 0) {
             return CommonResult.ok();
         }
-       return CommonResult.failed();
+        return CommonResult.failed();
     }
 
     @ApiOperation("更新角色")

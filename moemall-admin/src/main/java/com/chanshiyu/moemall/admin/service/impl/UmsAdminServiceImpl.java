@@ -36,7 +36,7 @@ import java.util.List;
 /**
  * @author SHIYU
  * @date 2019/10/9 16:49
- * @description  后台用户Service实现类
+ * @description 后台用户Service实现类
  */
 @Slf4j
 @Service
@@ -96,7 +96,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     public UmsAdminLoginVO login(String username, String password) {
         // 密码需要客户端加密后传递
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-        if(!passwordEncoder.matches(password, userDetails.getPassword())){
+        if (!passwordEncoder.matches(password, userDetails.getPassword())) {
             throw new BadCredentialsException("密码不正确");
         }
         UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
@@ -120,6 +120,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
 
     /**
      * 添加登录记录
+     *
      * @param username 用户名
      */
     private void insertLoginLog(String username) {

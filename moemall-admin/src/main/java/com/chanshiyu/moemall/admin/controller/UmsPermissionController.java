@@ -30,7 +30,7 @@ public class UmsPermissionController {
     @PostMapping("/create")
     public CommonResult create(@RequestBody UmsPermission permission) {
         int count = permissionService.create(permission);
-        if(count > 0){
+        if (count > 0) {
             return CommonResult.ok();
         }
         return CommonResult.failed();
@@ -40,7 +40,7 @@ public class UmsPermissionController {
     @PutMapping("/update")
     public CommonResult update(@RequestBody UmsPermission permission) {
         int count = permissionService.update(permission);
-        if(count > 0){
+        if (count > 0) {
             return CommonResult.ok();
         }
         return CommonResult.failed();
@@ -50,7 +50,7 @@ public class UmsPermissionController {
     @DeleteMapping("/delete/{id}")
     public CommonResult delete(@PathVariable Long id) {
         int count = permissionService.delete(id);
-        if(count > 0){
+        if (count > 0) {
             return CommonResult.ok();
         }
         return CommonResult.failed();

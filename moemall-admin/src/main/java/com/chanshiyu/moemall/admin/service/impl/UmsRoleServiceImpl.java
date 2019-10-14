@@ -15,9 +15,9 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author SHIYU
@@ -76,13 +76,13 @@ public class UmsRoleServiceImpl implements UmsRoleService {
         criteria.andEqualTo("roleId", roleId);
         umsRolePermissionRelationMapper.deleteByExample(example);
         // 批量插入新关系
-        List<UmsRolePermissionRelation> relationList = new ArrayList<>();
-        for (Long permissionId : permissionIds) {
-            UmsRolePermissionRelation relation = new UmsRolePermissionRelation();
-            relation.setRoleId(roleId);
-            relation.setPermissionId(permissionId);
-            relationList.add(relation);
-        }
+        List<UmsRolePermissionRelation> relationList = permissionIds.stream()
+                .map(permissionId -> {
+                    UmsRolePermissionRelation relation = new UmsRolePermissionRelation();
+                    relation.setRoleId(roleId);
+                    relation.setPermissionId(permissionId);
+                    return relation;
+                }).collect(Collectors.toList());
         return umsRolePermissionRelationMapper.insertList(relationList);
     }
 
