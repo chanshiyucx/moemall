@@ -7,6 +7,7 @@ import lombok.Data;
 
 import javax.persistence.Column;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author SHIYU
@@ -46,7 +47,7 @@ public class UmsAdminVO {
     private Integer status;
 
     @ApiModelProperty("角色")
-    private Long role;
+    private List<Long> roleIds;
 
     @ApiModelProperty("Token")
     @JsonInclude(JsonInclude.Include.NON_NULL)

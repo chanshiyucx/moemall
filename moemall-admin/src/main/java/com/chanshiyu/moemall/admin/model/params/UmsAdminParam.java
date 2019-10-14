@@ -5,6 +5,7 @@ import lombok.Data;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 
 /**
  * @author SHIYU
@@ -14,16 +15,18 @@ import javax.validation.constraints.NotEmpty;
 @Data
 public class UmsAdminParam {
 
+    @ApiModelProperty("主键ID")
+    private Long id;
+
     @ApiModelProperty(value = "用户名", required = true)
     @NotEmpty(message = "用户名不能为空")
     private String username;
 
     @ApiModelProperty(value = "密码", required = true)
-    @NotEmpty(message = "密码不能为空")
     private String password;
 
     @ApiModelProperty(value = "用户头像")
-    private String icon;
+    private String avatar;
 
     @ApiModelProperty(value = "邮箱")
     @Email(message = "邮箱格式不合法")
@@ -34,5 +37,11 @@ public class UmsAdminParam {
 
     @ApiModelProperty(value = "备注")
     private String note;
+
+    @ApiModelProperty(value = "状态")
+    private Integer status;
+
+    @ApiModelProperty(value = "角色")
+    private List<Long> roleIds;
 
 }

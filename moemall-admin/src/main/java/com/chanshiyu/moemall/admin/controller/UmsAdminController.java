@@ -36,6 +36,12 @@ public class UmsAdminController {
         return CommonResult.ok(umsAdminService.register(umsAdminParam));
     }
 
+    @ApiOperation(value = "更新用户")
+    @PutMapping("/update")
+    public CommonResult<UmsAdmin> update(@Valid @RequestBody UmsAdminParam umsAdminParam) {
+        return CommonResult.ok(umsAdminService.update(umsAdminParam));
+    }
+
     @ApiOperation(value = "用户登录")
     @PostMapping("/login")
     public CommonResult<UmsAdminVO> login(@Valid @RequestBody UmsAdminLoginParam umsAdminLoginParam) {

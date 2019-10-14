@@ -1,5 +1,6 @@
 package com.chanshiyu.moemall.admin.service.impl;
 
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.http.useragent.UserAgent;
 import cn.hutool.http.useragent.UserAgentUtil;
 import com.chanshiyu.moemall.admin.dao.UmsAdminDao;
@@ -10,8 +11,10 @@ import com.chanshiyu.moemall.admin.security.utils.JwtTokenUtil;
 import com.chanshiyu.moemall.admin.service.UmsAdminService;
 import com.chanshiyu.moemall.mbg.mapper.UmsAdminLoginLogMapper;
 import com.chanshiyu.moemall.mbg.mapper.UmsAdminMapper;
+import com.chanshiyu.moemall.mbg.mapper.UmsAdminRoleRelationMapper;
 import com.chanshiyu.moemall.mbg.model.UmsAdmin;
 import com.chanshiyu.moemall.mbg.model.UmsAdminLoginLog;
+import com.chanshiyu.moemall.mbg.model.UmsAdminRoleRelation;
 import com.chanshiyu.moemall.mbg.model.UmsPermission;
 import com.chanshiyu.moemall.service.exception.BadRequestException;
 import com.chanshiyu.moemall.service.vo.CommonListResult;
@@ -37,6 +40,7 @@ import tk.mybatis.mapper.entity.Example;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author SHIYU
@@ -49,6 +53,9 @@ public class UmsAdminServiceImpl implements UmsAdminService {
 
     @Autowired
     private UmsAdminMapper umsAdminMapper;
+
+    @Autowired
+    private UmsAdminRoleRelationMapper umsAdminRoleRelationMapper;
 
     @Autowired
     private UmsAdminLoginLogMapper loginLogMapper;
@@ -96,7 +103,24 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         String encodePassword = passwordEncoder.encode(umsAdmin.getPassword());
         umsAdmin.setPassword(encodePassword);
         umsAdminMapper.insert(umsAdmin);
+        // 更新用户角色关系表
+        updateRole(umsAdmin.getId(), umsAdminParam.getRoleIds());
         return umsAdmin;
+    }
+
+    @Override
+    public UmsAdmin update(UmsAdminParam umsAdminParam) {
+        UmsAdmin umsAdmin = new UmsAdmin();
+        BeanUtils.copyProperties(umsAdminParam, umsAdmin);
+        // 如果密码不为空
+        if(StrUtil.isNotBlank(umsAdmin.getPassword())) {
+            String encodePassword = passwordEncoder.encode(umsAdmin.getPassword());
+            umsAdmin.setPassword(encodePassword);
+        }
+        umsAdminMapper.updateByPrimaryKeySelective(umsAdmin);
+        // 更新用户角色关系表
+        updateRole(umsAdmin.getId(), umsAdminParam.getRoleIds());
+        return null;
     }
 
     @Override
@@ -157,6 +181,23 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         loginLog.setUserAgent(userAgent);
         log.info("loginLog: {}", loginLog);
         loginLogMapper.insert(loginLog);
+    }
+
+    private int updateRole(Long adminId, List<Long> roleIds) {
+        // 先删除原有关系
+        Example example = new Example(UmsAdminRoleRelation.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("adminId", adminId);
+        umsAdminRoleRelationMapper.deleteByExample(example);
+        // 批量插入新关系
+        List<UmsAdminRoleRelation> relationList = roleIds.stream()
+                .map(roleId -> {
+                    UmsAdminRoleRelation relation = new UmsAdminRoleRelation();
+                    relation.setAdminId(adminId);
+                    relation.setRoleId(roleId);
+                    return relation;
+                }).collect(Collectors.toList());
+        return umsAdminRoleRelationMapper.insertList(relationList);
     }
 
 }

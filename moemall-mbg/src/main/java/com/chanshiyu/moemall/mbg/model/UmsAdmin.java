@@ -2,10 +2,11 @@ package com.chanshiyu.moemall.mbg.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.*;
-import lombok.Data;
 
 @Data
 @ApiModel("后台用户表")
@@ -16,7 +17,7 @@ public class UmsAdmin implements Serializable {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @ApiModelProperty("主键ID")
+       @ApiModelProperty("主键ID")
     private Long id;
 
     /**

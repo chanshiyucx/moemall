@@ -21,12 +21,17 @@ public interface UmsAdminService {
     UmsAdmin getAdminByUsername(String username);
 
     /**
-     * 注册功能
+     * 用户注册
      */
     UmsAdmin register(UmsAdminParam umsAdminParam);
 
     /**
-     * 登录功能
+     * 更新用户
+     */
+    UmsAdmin update(UmsAdminParam umsAdminParam);
+
+    /**
+     * 用户登录
      */
     UmsAdminVO login(String username, String password);
 
