@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chanshiyu.moemall.admin.dao.UmsRolePermissionRelationDao">
+    <!--批量新增回写主键支持-->
+    <insert id="insertList">
+        INSERT INTO ums_role_permission_relation (role_id, permission_id) VALUES
+        <foreach collection="list" separator="," item="item" index="index">
+            (#{item.roleId,jdbcType=BIGINT},
+            #{item.permissionId,jdbcType=BIGINT})
+        </foreach>
+    </insert>
+
+    <resultMap id="FullResultMap" type="com.chanshiyu.moemall.admin.model.params.UmsRoleParam" extends="com.chanshiyu.moemall.mbg.mapper.UmsRoleMapper.BaseResultMap">
+        <collection property="permissionIds" ofType="LONG">
+            <result column="permission_id"/>
+        </collection>
+    </resultMap>
+
+    <select id="getRoleList" resultMap="FullResultMap">
+        SELECT
+            r.*, p.id as permission_id
+        FROM
+            ums_role r
+            LEFT JOIN ums_role_permission_relation rp ON r.id = rp.role_id
+            LEFT JOIN ums_permission p ON rp.permission_id = p.id
+    </select>
+
+    <select id="getPermissionList" resultMap="com.chanshiyu.moemall.mbg.mapper.UmsPermissionMapper.BaseResultMap">
+        SELECT
+            p.*
+        FROM
+            ums_role_permission_relation r
+            LEFT JOIN ums_permission p ON r.permission_id = p.id
+        WHERE
+            r.role_id = #{roleId};
+    </select>
+</mapper>

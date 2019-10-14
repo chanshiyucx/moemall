@@ -1,0 +1,37 @@
+package com.chanshiyu.moemall.admin.controller;
+
+import com.chanshiyu.moemall.admin.model.params.UmsRoleParam;
+import com.chanshiyu.moemall.admin.service.UmsRoleService;
+import com.chanshiyu.moemall.service.vo.CommonResult;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+/**
+ * @author SHIYU
+ * @date 2019/10/14 9:36
+ * @description 后台用户角色管理
+ */
+@Slf4j
+@Api(tags = "UmsRoleController", description = "后台用户角色管理")
+@RestController
+@RequestMapping("/role")
+public class UmsRoleController {
+
+    @Autowired
+    private UmsRoleService umsRoleService;
+
+    @ApiOperation("获取角色列表")
+    @GetMapping("/list")
+    public CommonResult<List<UmsRoleParam>> list() {
+        List<UmsRoleParam> roleList = umsRoleService.list();
+        return CommonResult.ok(roleList);
+    }
+
+}

@@ -37,7 +37,9 @@ management:
         include: "*"
 
 mybatis:
-  mapper-locations: classpath*:mapper/*.xml
+  mapper-locations:
+    - classpath*:mapper/*.xml
+    - classpath*:dao/*.xml
   type-aliases-package: com.chanshiyu.moemall.mbg.model
 
 jwt:
