@@ -7,10 +7,9 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -26,6 +25,36 @@ public class UmsRoleController {
 
     @Autowired
     private UmsRoleService umsRoleService;
+
+    @ApiOperation("新增角色")
+    @PostMapping("/create")
+    public CommonResult create(@Valid @RequestBody UmsRoleParam umsRoleParam) {
+        int count = umsRoleService.create(umsRoleParam);
+        if (count > 0) {
+            return CommonResult.ok();
+        }
+       return CommonResult.failed();
+    }
+
+    @ApiOperation("更新角色")
+    @PutMapping("/update")
+    public CommonResult update(@Valid @RequestBody UmsRoleParam umsRoleParam) {
+        int count = umsRoleService.update(umsRoleParam);
+        if (count > 0) {
+            return CommonResult.ok();
+        }
+        return CommonResult.failed();
+    }
+
+    @ApiOperation("删除角色")
+    @DeleteMapping("/delete/{id}")
+    public CommonResult delete(@PathVariable Long id) {
+        int count = umsRoleService.delete(id);
+        if (count > 0) {
+            return CommonResult.ok();
+        }
+        return CommonResult.failed();
+    }
 
     @ApiOperation("获取角色列表")
     @GetMapping("/list")

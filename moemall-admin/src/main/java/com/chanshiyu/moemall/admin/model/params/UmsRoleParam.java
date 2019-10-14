@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 /**
@@ -19,6 +20,7 @@ import java.util.List;
 public class UmsRoleParam extends UmsRole {
 
     @ApiModelProperty("权限ID")
+    @NotEmpty(message = "权限不能为空")
     List<Long> permissionIds;
 
 }

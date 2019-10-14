@@ -12,12 +12,12 @@ import java.util.List;
 public interface UmsRoleService {
 
     /**
-     * 添加角色
+     * 新增角色
      */
     int create(UmsRoleParam umsRoleParam);
 
     /**
-     * 修改角色信息
+     * 更新角色
      */
     int update(UmsRoleParam umsRoleParam);
 
@@ -25,11 +25,6 @@ public interface UmsRoleService {
      * 删除角色
      */
     int delete(Long id);
-
-    /**
-     * 修改指定角色的权限
-     */
-    int updatePermission(Long roleId, List<Long> permissionIds);
 
     /**
      * 获取角色列表
