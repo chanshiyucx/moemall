@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chanshiyu.moemall.admin.dao.UmsRolePermissionRelationDao">
+    <resultMap id="FullResultMap" type="com.chanshiyu.moemall.admin.model.params.UmsRoleParam" extends="com.chanshiyu.moemall.mbg.mapper.UmsRoleMapper.BaseResultMap">
+        <collection property="permissionIds" ofType="LONG">
+            <result column="permission_id"/>
+        </collection>
+    </resultMap>
+
     <!--批量新增回写主键支持-->
     <insert id="insertList">
         INSERT INTO ums_role_permission_relation (role_id, permission_id) VALUES
@@ -9,12 +15,6 @@
             #{item.permissionId,jdbcType=BIGINT})
         </foreach>
     </insert>
-
-    <resultMap id="FullResultMap" type="com.chanshiyu.moemall.admin.model.params.UmsRoleParam" extends="com.chanshiyu.moemall.mbg.mapper.UmsRoleMapper.BaseResultMap">
-        <collection property="permissionIds" ofType="LONG">
-            <result column="permission_id"/>
-        </collection>
-    </resultMap>
 
     <select id="getRoleList" resultMap="FullResultMap">
         SELECT

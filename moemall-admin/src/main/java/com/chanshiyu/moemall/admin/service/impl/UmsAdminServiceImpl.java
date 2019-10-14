@@ -2,9 +2,10 @@ package com.chanshiyu.moemall.admin.service.impl;
 
 import cn.hutool.http.useragent.UserAgent;
 import cn.hutool.http.useragent.UserAgentUtil;
+import com.chanshiyu.moemall.admin.dao.UmsAdminDao;
 import com.chanshiyu.moemall.admin.dao.UmsAdminRoleRelationDao;
 import com.chanshiyu.moemall.admin.model.params.UmsAdminParam;
-import com.chanshiyu.moemall.admin.model.vo.UmsAdminLoginVO;
+import com.chanshiyu.moemall.admin.model.vo.UmsAdminVO;
 import com.chanshiyu.moemall.admin.security.utils.JwtTokenUtil;
 import com.chanshiyu.moemall.admin.service.UmsAdminService;
 import com.chanshiyu.moemall.mbg.mapper.UmsAdminLoginLogMapper;
@@ -13,6 +14,10 @@ import com.chanshiyu.moemall.mbg.model.UmsAdmin;
 import com.chanshiyu.moemall.mbg.model.UmsAdminLoginLog;
 import com.chanshiyu.moemall.mbg.model.UmsPermission;
 import com.chanshiyu.moemall.service.exception.BadRequestException;
+import com.chanshiyu.moemall.service.vo.CommonListResult;
+import com.chanshiyu.moemall.service.vo.ResultAttributes;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +55,9 @@ public class UmsAdminServiceImpl implements UmsAdminService {
 
     @Autowired
     private UmsAdminRoleRelationDao umsAdminRoleRelationDao;
+
+    @Autowired
+    private UmsAdminDao umsAdminDao;
 
     @Autowired
     private UserDetailsService userDetailsService;
@@ -93,7 +101,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
-    public UmsAdminLoginVO login(String username, String password) {
+    public UmsAdminVO login(String username, String password) {
         // 密码需要客户端加密后传递
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
         if (!passwordEncoder.matches(password, userDetails.getPassword())) {
@@ -104,7 +112,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         String token = jwtTokenUtil.generateToken(userDetails);
         // 获取用户详细信息
         UmsAdmin umsAdmin = getAdminByUsername(username);
-        UmsAdminLoginVO umsAdminLoginVO = new UmsAdminLoginVO();
+        UmsAdminVO umsAdminLoginVO = new UmsAdminVO();
         BeanUtils.copyProperties(umsAdmin, umsAdminLoginVO);
         umsAdminLoginVO.setToken(token);
         // 写入登录日志
@@ -113,14 +121,26 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     }
 
     @Override
+    public int delete(Long id) {
+        return umsAdminMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
     @Transactional(propagation = Propagation.SUPPORTS)
     public List<UmsPermission> getPermissionList(Long adminId) {
         return umsAdminRoleRelationDao.getPermissionList(adminId);
     }
 
+    @Override
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public CommonListResult<UmsAdminVO> list(Integer pageNum, Integer pageSize) {
+        Page<UmsAdminVO> page = PageHelper.startPage(pageNum,pageSize).doSelectPage(()-> umsAdminDao.getAdminList());
+        ResultAttributes attributes = new ResultAttributes(page.getPageNum(), page.getPageSize(), page.getTotal());
+        return new CommonListResult<>(page.getResult(), attributes);
+    }
+
     /**
      * 添加登录记录
-     *
      * @param username 用户名
      */
     private void insertLoginLog(String username) {

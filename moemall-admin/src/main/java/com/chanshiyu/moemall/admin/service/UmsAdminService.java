@@ -1,9 +1,10 @@
 package com.chanshiyu.moemall.admin.service;
 
 import com.chanshiyu.moemall.admin.model.params.UmsAdminParam;
-import com.chanshiyu.moemall.admin.model.vo.UmsAdminLoginVO;
+import com.chanshiyu.moemall.admin.model.vo.UmsAdminVO;
 import com.chanshiyu.moemall.mbg.model.UmsAdmin;
 import com.chanshiyu.moemall.mbg.model.UmsPermission;
+import com.chanshiyu.moemall.service.vo.CommonListResult;
 
 import java.util.List;
 
@@ -27,11 +28,21 @@ public interface UmsAdminService {
     /**
      * 登录功能
      */
-    UmsAdminLoginVO login(String username, String password);
+    UmsAdminVO login(String username, String password);
+
+    /**
+     * 删除用户
+     */
+    int delete(Long id);
 
     /**
      * 获取用户所有权限
      */
     List<UmsPermission> getPermissionList(Long adminId);
+
+    /**
+     * 分页获取用户列表
+     */
+    CommonListResult<UmsAdminVO> list(Integer pageNum, Integer pageSize);
 
 }

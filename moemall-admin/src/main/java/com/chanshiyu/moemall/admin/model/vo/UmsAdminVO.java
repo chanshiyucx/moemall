@@ -1,5 +1,7 @@
 package com.chanshiyu.moemall.admin.model.vo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -12,13 +14,17 @@ import java.util.Date;
  * @description 登录返回数据
  */
 @Data
-public class UmsAdminLoginVO {
+public class UmsAdminVO {
 
     @ApiModelProperty("主键ID")
     private Long id;
 
     @ApiModelProperty("用户名")
     private String username;
+
+    @ApiModelProperty("密码")
+    @JsonIgnore
+    private String password;
 
     @ApiModelProperty("头像")
     private String avatar;
@@ -39,7 +45,11 @@ public class UmsAdminLoginVO {
     @ApiModelProperty("帐号启用状态：0->禁用；1->启用")
     private Integer status;
 
+    @ApiModelProperty("角色")
+    private Long role;
+
     @ApiModelProperty("Token")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String token;
 
 }

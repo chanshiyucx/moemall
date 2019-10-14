@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chanshiyu.moemall.admin.dao.UmsAdminDao">
+    <resultMap id="FullResultMap" type="com.chanshiyu.moemall.admin.model.vo.UmsAdminVO" extends="com.chanshiyu.moemall.mbg.mapper.UmsAdminMapper.BaseResultMap">
+        <association property="role" javaType="LONG" />
+    </resultMap>
+
+    <select id="getAdminList" resultMap="FullResultMap">
+        SELECT
+            a.*, ar.role_id as role
+        FROM
+            ums_admin a
+            LEFT JOIN ums_admin_role_relation ar ON a.id = ar.admin_id
+    </select>
+</mapper>

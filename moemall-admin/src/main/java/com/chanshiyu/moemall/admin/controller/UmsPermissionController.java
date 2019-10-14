@@ -18,7 +18,7 @@ import java.util.List;
  * @description 后台用户权限管理
  */
 @Slf4j
-@Api(tags = "UmsPermissionController", description = "后台用户权限管理")
+@Api(value = "后台用户权限管理", tags = "UmsPermissionController")
 @RestController
 @RequestMapping("/permission")
 public class UmsPermissionController {
