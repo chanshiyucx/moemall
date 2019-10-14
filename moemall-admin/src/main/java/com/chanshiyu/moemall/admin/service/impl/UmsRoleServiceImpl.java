@@ -43,7 +43,6 @@ public class UmsRoleServiceImpl implements UmsRoleService {
         UmsRole umsRole = new UmsRole();
         BeanUtils.copyProperties(umsRoleParam, umsRole);
         umsRole.setCreateTime(new Date());
-        umsRole.setAdminCount(0);
         umsRoleMapper.insert(umsRole);
         return updatePermission(umsRole.getId(), umsRoleParam.getPermissionIds());
     }

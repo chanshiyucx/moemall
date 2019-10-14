@@ -2,11 +2,10 @@ package com.chanshiyu.moemall.mbg.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
-
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.*;
+import lombok.Data;
 
 @Data
 @ApiModel("后台用户角色表")
@@ -28,13 +27,6 @@ public class UmsRole implements Serializable {
      */
     @ApiModelProperty("描述")
     private String description;
-
-    /**
-     * 后台用户数量
-     */
-    @Column(name = "admin_count")
-    @ApiModelProperty("后台用户数量")
-    private Integer adminCount;
 
     /**
      * 创建时间

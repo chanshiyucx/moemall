@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * @author SHIYU
  * @date 2019/10/11 16:48
- * @description 登录返回数据
+ * @description 后台用户信息
  */
 @Data
 public class UmsAdminVO {

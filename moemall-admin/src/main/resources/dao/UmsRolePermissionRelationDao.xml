@@ -7,15 +7,6 @@
         </collection>
     </resultMap>
 
-    <!--批量新增回写主键支持-->
-    <insert id="insertList">
-        INSERT INTO ums_role_permission_relation (role_id, permission_id) VALUES
-        <foreach collection="list" separator="," item="item" index="index">
-            (#{item.roleId,jdbcType=BIGINT},
-            #{item.permissionId,jdbcType=BIGINT})
-        </foreach>
-    </insert>
-
     <select id="getRoleList" resultMap="FullResultMap">
         SELECT
             r.*, p.id as permission_id

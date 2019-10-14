@@ -183,7 +183,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         loginLogMapper.insert(loginLog);
     }
 
-    private int updateRole(Long adminId, List<Long> roleIds) {
+    private void updateRole(Long adminId, List<Long> roleIds) {
         // 先删除原有关系
         Example example = new Example(UmsAdminRoleRelation.class);
         Example.Criteria criteria = example.createCriteria();
@@ -197,7 +197,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
                     relation.setRoleId(roleId);
                     return relation;
                 }).collect(Collectors.toList());
-        return umsAdminRoleRelationMapper.insertList(relationList);
+        umsAdminRoleRelationMapper.insertList(relationList);
     }
 
 }
