@@ -22,6 +22,9 @@ spring:
         max-wait: -1
         max-idle: 8
         min-idle: 0
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
   cloud:
     nacos:
       discovery:
@@ -34,14 +37,16 @@ management:
         include: "*"
 
 mybatis:
-  mapper-locations: classpath*:mapper/*.xml
+  mapper-locations:
+    - classpath*:mapper/*.xml
+    - classpath*:dao/*.xml
   type-aliases-package: com.chanshiyu.moemall.mbg.model
 
 jwt:
-  tokenHeader: Authorization #JWT存储的请求头
-  secret: mySecret #JWT加解密使用的密钥
-  expiration: 604800 #JWT的超期限时间(60*60*24)
-  tokenHead: Bearer  #JWT负载中拿到开头
+  tokenHeader: Authorization
+  tokenHead: Bearer
+  secret: mySecret
+  expiration: 24h
 
 swagger:
   title: 萌购后台Api
@@ -53,3 +58,8 @@ swagger:
     name: 蝉時雨
     url: https://chanshiyu.com/
     email: me@chanshiyu.com
+
+logging:
+  level:
+    com.chanshiyu.moemall: info
+  path: C:/Users/11245/Documents/logs

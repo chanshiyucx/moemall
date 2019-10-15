@@ -109,11 +109,12 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED)
     public UmsAdmin update(UmsAdminParam umsAdminParam) {
         UmsAdmin umsAdmin = new UmsAdmin();
         BeanUtils.copyProperties(umsAdminParam, umsAdmin);
         // 如果密码不为空
-        if(StrUtil.isNotBlank(umsAdmin.getPassword())) {
+        if (StrUtil.isNotBlank(umsAdmin.getPassword())) {
             String encodePassword = passwordEncoder.encode(umsAdmin.getPassword());
             umsAdmin.setPassword(encodePassword);
         }
@@ -145,6 +146,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED)
     public int delete(Long id) {
         return umsAdminMapper.deleteByPrimaryKey(id);
     }
@@ -158,7 +160,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
     public CommonListResult<UmsAdminVO> list(Integer pageNum, Integer pageSize) {
-        Page<UmsAdminVO> page = PageHelper.startPage(pageNum,pageSize).doSelectPage(()-> umsAdminDao.getAdminList());
+        Page<UmsAdminVO> page = PageHelper.startPage(pageNum, pageSize).doSelectPage(() -> umsAdminDao.getAdminList());
         ResultAttributes attributes = new ResultAttributes(page.getPageNum(), page.getPageSize(), page.getTotal());
         return new CommonListResult<>(page.getResult(), attributes);
     }

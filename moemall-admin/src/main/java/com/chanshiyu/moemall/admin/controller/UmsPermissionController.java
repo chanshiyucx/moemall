@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -28,7 +29,7 @@ public class UmsPermissionController {
 
     @ApiOperation("新增权限")
     @PostMapping("/create")
-    public CommonResult create(@RequestBody UmsPermission permission) {
+    public CommonResult create(@Valid @RequestBody UmsPermission permission) {
         int count = permissionService.create(permission);
         if (count > 0) {
             return CommonResult.ok();
@@ -38,7 +39,7 @@ public class UmsPermissionController {
 
     @ApiOperation("修改权限")
     @PutMapping("/update")
-    public CommonResult update(@RequestBody UmsPermission permission) {
+    public CommonResult update(@Valid @RequestBody UmsPermission permission) {
         int count = permissionService.update(permission);
         if (count > 0) {
             return CommonResult.ok();

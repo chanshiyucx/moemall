@@ -62,7 +62,7 @@ public class UmsAdminController {
     @ApiOperation(value = "用户列表")
     @GetMapping("/list")
     public CommonResult<List<UmsAdminVO>> list(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
-                                             @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize) {
+                                               @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize) {
         CommonListResult<UmsAdminVO> result = umsAdminService.list(pageNum, pageSize);
         return CommonResult.ok(result.getList(), result.getAttributes());
     }

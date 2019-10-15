@@ -2,6 +2,8 @@
 
 萌购商城，新手上路，练习项目 U•ェ•U。
 
+![管理后台](https://github.com/chanshiyucx/moemall-admin)
+
 ## 技术栈
 
 | 技术                 | 版本   | 说明             |
