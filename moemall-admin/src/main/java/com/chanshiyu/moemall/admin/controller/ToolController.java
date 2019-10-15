@@ -29,7 +29,7 @@ import java.util.HashMap;
 @RequestMapping("/tool")
 public class ToolController {
 
-    private final String uploadUrl = "https://sm.ms/api/v2/upload";
+    private static final String uploadUrl = "https://sm.ms/api/v2/upload";
 
     @ApiOperation(value = "文件上传")
     @PostMapping("/upload")

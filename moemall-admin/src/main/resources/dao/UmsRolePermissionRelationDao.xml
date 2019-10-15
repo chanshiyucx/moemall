@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chanshiyu.moemall.admin.dao.UmsRolePermissionRelationDao">
-    <resultMap id="FullResultMap" type="com.chanshiyu.moemall.admin.model.params.UmsRoleParam" extends="com.chanshiyu.moemall.mbg.mapper.UmsRoleMapper.BaseResultMap">
+    <resultMap id="RoleResultMap" type="com.chanshiyu.moemall.admin.model.params.UmsRoleParam" extends="com.chanshiyu.moemall.mbg.mapper.UmsRoleMapper.BaseResultMap">
         <collection property="permissionIds" ofType="LONG">
             <result column="permission_id"/>
         </collection>
     </resultMap>
 
-    <select id="getRoleList" resultMap="FullResultMap">
+    <select id="getRoleList" resultMap="RoleResultMap">
         SELECT
             r.*, p.id as permission_id
         FROM

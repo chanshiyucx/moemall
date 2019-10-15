@@ -23,12 +23,13 @@ import java.util.stream.Stream;
 @RestControllerAdvice
 public class RestExceptionHandler {
 
-    @ExceptionHandler(Exception.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public CommonResult<String> defaultErrorHandler(Exception e) {
-        e.printStackTrace();
-        return CommonResult.failed(e.getMessage());
-    }
+//    ！会拦截 spring security 的认证错误，先注释
+//    @ExceptionHandler(Exception.class)
+//    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+//    public CommonResult<String> defaultErrorHandler(Exception e) {
+//        e.printStackTrace();
+//        return CommonResult.failed(e.getMessage());
+//    }
 
     /**
      * 普通Restful接口参数判断

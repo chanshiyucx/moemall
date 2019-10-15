@@ -2,6 +2,7 @@ package com.chanshiyu.moemall.admin.security.component;
 
 import cn.hutool.json.JSONUtil;
 import com.chanshiyu.moemall.service.vo.CommonResult;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.stereotype.Component;

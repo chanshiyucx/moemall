@@ -11,7 +11,7 @@
  Target Server Version : 80017
  File Encoding         : 65001
 
- Date: 12/10/2019 14:06:57
+ Date: 15/10/2019 10:13:11
 */
 
 SET NAMES utf8mb4;
@@ -1692,9 +1692,8 @@ CREATE TABLE `ums_admin`  (
 -- ----------------------------
 INSERT INTO `ums_admin` VALUES (1, 'test', '$2a$10$NZ5o7r2E.ayT2ZoxgjlI.eJ6OEYqjH7INR/F.mXDbjZJi9HF0YCVG', 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180607/timg.jpg', NULL, '测试账号', NULL, '2018-09-29 13:55:30', 1);
 INSERT INTO `ums_admin` VALUES (3, 'admin', '$2a$10$NZ5o7r2E.ayT2ZoxgjlI.eJ6OEYqjH7INR/F.mXDbjZJi9HF0YCVG', 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20190129/170157_yIl3_1767531.jpg', 'admin@163.com', '系统管理员', '系统管理员', '2018-10-08 13:32:47', 1);
-INSERT INTO `ums_admin` VALUES (5, 'chanshiyu', '$2a$10$qSES6MBWkG7/eQEygFMTHupBxBX9nHRC75f8Z3AkWDsBiXPrJz0yG', NULL, NULL, NULL, NULL, '2019-10-10 07:56:01', 1);
-INSERT INTO `ums_admin` VALUES (6, 'shiyu', '$2a$10$zIbbGMv6xLvatJdsvnhk0e2CPXOKybDXS9OxOtFTbwdbe1wEfJWiW', NULL, NULL, NULL, NULL, '2019-10-10 08:44:20', 1);
-INSERT INTO `ums_admin` VALUES (7, 'chan', '$2a$10$ZH7Fv0F8I13zafOa6o7D3uyJ8N4xm3i8V6Di3FgYl37CW9gw9.932', NULL, NULL, NULL, NULL, '2019-10-10 08:45:45', 1);
+INSERT INTO `ums_admin` VALUES (8, 'chanshiyu', '$2a$10$GedR3ZR.Y5F8ZrBlrri3WuCgS1HClw/gKRkm5QfTSwYagAAlDPb9e', 'https://i.loli.net/2019/10/15/yomGcHtVSpUks1v.jpg', 'me@chanshiyu.com', 'chanshiyu', 'hh', '2019-10-14 10:14:10', 1);
+INSERT INTO `ums_admin` VALUES (9, 'shiyu', '$2a$10$wjSSUnl958bbXRknb2xLs.itcS/ADHDVYYSCYOLTtBbpwTuAa.xpS', 'https://i.loli.net/2019/10/15/Nu38PGf5rQXt6Rh.png', 'shiyu@me.com', '时雨', '时雨', '2019-10-14 10:15:28', 0);
 
 -- ----------------------------
 -- Table structure for ums_admin_login_log
@@ -1708,7 +1707,7 @@ CREATE TABLE `ums_admin_login_log`  (
   `address` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `user_agent` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '浏览器登录类型',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 38 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台用户登录日志表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 50 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台用户登录日志表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ums_admin_login_log
@@ -1739,6 +1738,9 @@ INSERT INTO `ums_admin_login_log` VALUES (46, 3, '2019-10-11 11:40:30', '192.168
 INSERT INTO `ums_admin_login_log` VALUES (47, 3, '2019-10-11 11:49:34', '192.168.10.242', NULL, 'Chrome/77.0.3865.90, Windows 10 or Windows Server 2016');
 INSERT INTO `ums_admin_login_log` VALUES (48, 3, '2019-10-12 04:03:02', '0:0:0:0:0:0:0:1', NULL, 'Chrome/77.0.3865.90, Windows 10 or Windows Server 2016');
 INSERT INTO `ums_admin_login_log` VALUES (49, 5, '2019-10-12 04:10:06', '0:0:0:0:0:0:0:1', NULL, 'Unknown/null, Unknown');
+INSERT INTO `ums_admin_login_log` VALUES (50, 8, '2019-10-14 10:14:25', '192.168.10.242', NULL, 'Chrome/77.0.3865.90, Windows 10 or Windows Server 2016');
+INSERT INTO `ums_admin_login_log` VALUES (51, 8, '2019-10-14 11:49:12', '0:0:0:0:0:0:0:1', NULL, 'Unknown/null, Unknown');
+INSERT INTO `ums_admin_login_log` VALUES (52, 8, '2019-10-15 02:36:11', '192.168.205.1', NULL, 'Chrome/77.0.3865.90, Windows 10 or Windows Server 2016');
 
 -- ----------------------------
 -- Table structure for ums_admin_role_relation
@@ -1754,9 +1756,11 @@ CREATE TABLE `ums_admin_role_relation`  (
 -- ----------------------------
 -- Records of ums_admin_role_relation
 -- ----------------------------
-INSERT INTO `ums_admin_role_relation` VALUES (13, 3, 1);
-INSERT INTO `ums_admin_role_relation` VALUES (15, 3, 2);
-INSERT INTO `ums_admin_role_relation` VALUES (16, 3, 4);
+INSERT INTO `ums_admin_role_relation` VALUES (42, 5, 1);
+INSERT INTO `ums_admin_role_relation` VALUES (43, 5, 2);
+INSERT INTO `ums_admin_role_relation` VALUES (65, 8, 1);
+INSERT INTO `ums_admin_role_relation` VALUES (66, 9, 2);
+INSERT INTO `ums_admin_role_relation` VALUES (67, 9, 1);
 
 -- ----------------------------
 -- Table structure for ums_growth_change_history
@@ -2052,20 +2056,18 @@ CREATE TABLE `ums_role`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '名称',
   `description` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '描述',
-  `admin_count` int(11) NULL DEFAULT NULL COMMENT '后台用户数量',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   `status` int(1) NULL DEFAULT 1 COMMENT '启用状态：0->禁用；1->启用',
-  `sort` int(11) NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台用户角色表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ums_role
 -- ----------------------------
-INSERT INTO `ums_role` VALUES (1, '商品管理员', '商品管理员', 0, '2018-09-30 15:46:11', 1, 0);
-INSERT INTO `ums_role` VALUES (2, '商品分类管理员', '商品分类管理员', 0, '2018-09-30 15:53:45', 1, 0);
-INSERT INTO `ums_role` VALUES (3, '商品类型管理员', '商品类型管理员', 0, '2018-09-30 15:53:56', 1, 0);
-INSERT INTO `ums_role` VALUES (4, '品牌管理员', '品牌管理员', 0, '2018-09-30 15:54:12', 1, 0);
+INSERT INTO `ums_role` VALUES (1, '商品管理员', '商品管理员', '2018-09-30 15:46:11', 1);
+INSERT INTO `ums_role` VALUES (2, '商品分类管理员', '商品分类管理员', '2018-09-30 15:53:45', 1);
+INSERT INTO `ums_role` VALUES (3, '商品类型管理员', '商品类型管理员', '2018-09-30 15:53:56', 1);
+INSERT INTO `ums_role` VALUES (4, '品牌管理员', '品牌管理员', '2018-09-30 15:54:12', 1);
 
 -- ----------------------------
 -- Table structure for ums_role_permission_relation

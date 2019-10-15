@@ -1,5 +1,6 @@
 package com.chanshiyu.moemall.admin.service.impl;
 
+import cn.hutool.core.util.StrUtil;
 import com.chanshiyu.moemall.admin.model.dto.UmsPermissionNode;
 import com.chanshiyu.moemall.admin.service.UmsPermissionService;
 import com.chanshiyu.moemall.mbg.mapper.UmsPermissionMapper;
@@ -32,6 +33,10 @@ public class UmsPermissionServiceImpl implements UmsPermissionService {
     @Transactional(propagation = Propagation.REQUIRED)
     public int create(UmsPermission umsPermission) {
         umsPermission.setCreateTime(new Date());
+        // 权限值未设置则为 null
+        if (StrUtil.isBlank(umsPermission.getValue())) {
+            umsPermission.setValue(null);
+        }
         return permissionMapper.insert(umsPermission);
     }
 

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chanshiyu.moemall.admin.dao.UmsAdminDao">
-    <resultMap id="FullResultMap" type="com.chanshiyu.moemall.admin.model.vo.UmsAdminVO" extends="com.chanshiyu.moemall.mbg.mapper.UmsAdminMapper.BaseResultMap">
+    <resultMap id="AdminResultMap" type="com.chanshiyu.moemall.admin.model.vo.UmsAdminVO" extends="com.chanshiyu.moemall.mbg.mapper.UmsAdminMapper.BaseResultMap">
         <collection property="roleIds" ofType="LONG">
             <result column="role_id"/>
         </collection>
     </resultMap>
 
-    <select id="getAdminList" resultMap="FullResultMap">
+    <select id="getAdminList" resultMap="AdminResultMap">
         SELECT
             a.*, ar.role_id as role_id
         FROM
