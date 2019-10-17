@@ -15,6 +15,7 @@
     <result column="product_comment_count" jdbcType="INTEGER" property="productCommentCount" />
     <result column="logo" jdbcType="VARCHAR" property="logo" />
     <result column="big_pic" jdbcType="VARCHAR" property="bigPic" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="brand_story" jdbcType="LONGVARCHAR" property="brandStory" />
   </resultMap>
 </mapper>

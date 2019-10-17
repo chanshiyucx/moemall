@@ -2,10 +2,10 @@ package com.chanshiyu.moemall.mbg.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
-
-import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
+import javax.persistence.*;
+import lombok.Data;
 
 @Data
 @ApiModel("品牌表")
@@ -75,6 +75,13 @@ public class PmsBrand implements Serializable {
     @Column(name = "big_pic")
     @ApiModelProperty("专区大图")
     private String bigPic;
+
+    /**
+     * 创建时间
+     */
+    @Column(name = "create_time")
+    @ApiModelProperty("创建时间")
+    private Date createTime;
 
     /**
      * 品牌故事

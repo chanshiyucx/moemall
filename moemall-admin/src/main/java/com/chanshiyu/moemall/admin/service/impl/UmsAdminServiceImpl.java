@@ -121,7 +121,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         umsAdminMapper.updateByPrimaryKeySelective(umsAdmin);
         // 更新用户角色关系表
         updateRole(umsAdmin.getId(), umsAdminParam.getRoleIds());
-        return null;
+        return umsAdmin;
     }
 
     @Override
@@ -171,8 +171,6 @@ public class UmsAdminServiceImpl implements UmsAdminService {
 
     /**
      * 添加登录记录
-     *
-     * @param username 用户名
      */
     private void insertLoginLog(String username) {
         UmsAdmin admin = getAdminByUsername(username);

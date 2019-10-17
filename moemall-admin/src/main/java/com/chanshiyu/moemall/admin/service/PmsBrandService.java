@@ -1,8 +1,9 @@
 package com.chanshiyu.moemall.admin.service;
 
+import com.chanshiyu.moemall.admin.model.params.PmsBrandParam;
+import com.chanshiyu.moemall.admin.model.params.PmsBrandStatusParam;
 import com.chanshiyu.moemall.mbg.model.PmsBrand;
-
-import java.util.List;
+import com.chanshiyu.moemall.service.vo.CommonListResult;
 
 /**
  * @author SHIYU
@@ -14,12 +15,17 @@ public interface PmsBrandService {
     /**
      * 新增品牌
      */
-    int create(PmsBrand pmsBrand);
+    int create(PmsBrandParam pmsBrandParam);
 
     /**
      * 更新品牌
      */
-    int update(PmsBrand pmsBrand);
+    int update(PmsBrandParam pmsBrandParam);
+
+    /**
+     * 更新品牌状态
+     */
+    int updateStatus(PmsBrandStatusParam pmsBrandStatusParam);
 
     /**
      * 删除品牌
@@ -29,6 +35,6 @@ public interface PmsBrandService {
     /**
      * 获取品牌列表
      */
-    List<PmsBrand> list();
+    CommonListResult<PmsBrand> list(Integer pageNum, Integer pageSize, String name);
 
 }
