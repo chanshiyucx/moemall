@@ -7,6 +7,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -28,6 +29,7 @@ public class UmsRoleController {
 
     @ApiOperation("新增角色")
     @PostMapping("/create")
+    @PreAuthorize("hasAuthority('ums:role:create')")
     public CommonResult create(@Valid @RequestBody UmsRoleParam umsRoleParam) {
         int count = umsRoleService.create(umsRoleParam);
         if (count > 0) {
@@ -38,6 +40,7 @@ public class UmsRoleController {
 
     @ApiOperation("更新角色")
     @PutMapping("/update")
+    @PreAuthorize("hasAuthority('ums:role:update')")
     public CommonResult update(@Valid @RequestBody UmsRoleParam umsRoleParam) {
         int count = umsRoleService.update(umsRoleParam);
         if (count > 0) {
@@ -48,6 +51,7 @@ public class UmsRoleController {
 
     @ApiOperation("删除角色")
     @DeleteMapping("/delete/{id}")
+    @PreAuthorize("hasAuthority('ums:role:delete')")
     public CommonResult delete(@PathVariable Long id) {
         int count = umsRoleService.delete(id);
         if (count > 0) {
@@ -58,6 +62,7 @@ public class UmsRoleController {
 
     @ApiOperation("获取角色列表")
     @GetMapping("/list")
+    @PreAuthorize("hasAuthority('ums:role:read')")
     public CommonResult<List<UmsRoleParam>> list() {
         List<UmsRoleParam> roleList = umsRoleService.list();
         return CommonResult.ok(roleList);

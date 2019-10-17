@@ -40,7 +40,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.csrf() // 由于使用的是JWT，我们这里不需要csrf
+        httpSecurity.cors()// 允许跨域
+                .and()
+                .csrf() // 由于使用的是JWT，我们这里不需要csrf
                 .disable()
                 .sessionManagement()// 基于token，所以不需要session
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -53,8 +55,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.html",
                         "/**/*.css",
                         "/**/*.js",
-                        "/swagger-resources/**",
                         "/v2/api-docs/**",
+                        "/swagger-resources/**",
                         "/webjars/springfox-swagger-ui/**"
                 )
                 .permitAll()

@@ -1,0 +1,24 @@
+package com.chanshiyu.moemall.admin.validator;
+
+import javax.validation.Constraint;
+import javax.validation.Payload;
+import java.lang.annotation.*;
+
+/**
+ * @author SHIYU
+ * @date 2019/10/16 10:36
+ * @description 验证状态是否在指定范围内的注解
+ */
+@Documented
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.FIELD, ElementType.PARAMETER})
+@Constraint(validatedBy = FlagValidatorClass.class)
+public @interface FlagValidator {
+    String[] value() default {};
+
+    String message() default "flag is not found";
+
+    Class<?>[] groups() default {};
+
+    Class<? extends Payload>[] payload() default {};
+}

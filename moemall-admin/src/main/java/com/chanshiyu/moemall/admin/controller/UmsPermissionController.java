@@ -8,6 +8,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -29,6 +30,7 @@ public class UmsPermissionController {
 
     @ApiOperation("新增权限")
     @PostMapping("/create")
+    @PreAuthorize("hasAuthority('ums:permission:create')")
     public CommonResult create(@Valid @RequestBody UmsPermission permission) {
         int count = permissionService.create(permission);
         if (count > 0) {
@@ -39,6 +41,7 @@ public class UmsPermissionController {
 
     @ApiOperation("修改权限")
     @PutMapping("/update")
+    @PreAuthorize("hasAuthority('ums:permission:update')")
     public CommonResult update(@Valid @RequestBody UmsPermission permission) {
         int count = permissionService.update(permission);
         if (count > 0) {
@@ -49,6 +52,7 @@ public class UmsPermissionController {
 
     @ApiOperation("删除权限")
     @DeleteMapping("/delete/{id}")
+    @PreAuthorize("hasAuthority('ums:permission:delete')")
     public CommonResult delete(@PathVariable Long id) {
         int count = permissionService.delete(id);
         if (count > 0) {
@@ -59,6 +63,7 @@ public class UmsPermissionController {
 
     @ApiOperation("获取所有权限列表")
     @GetMapping("/list")
+    @PreAuthorize("hasAuthority('ums:permission:read')")
     public CommonResult<List<UmsPermission>> list() {
         List<UmsPermission> permissionList = permissionService.list();
         return CommonResult.ok(permissionList);
@@ -66,6 +71,7 @@ public class UmsPermissionController {
 
     @ApiOperation("以层级结构返回所有权限")
     @GetMapping("/treeList")
+    @PreAuthorize("hasAuthority('ums:permission:read')")
     public CommonResult<List<UmsPermissionNode>> treeList() {
         List<UmsPermissionNode> permissionNodeList = permissionService.treeList();
         return CommonResult.ok(permissionNodeList);

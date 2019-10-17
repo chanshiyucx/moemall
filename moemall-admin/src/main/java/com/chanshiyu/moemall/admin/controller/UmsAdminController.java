@@ -31,20 +31,6 @@ public class UmsAdminController {
     @Autowired
     private UmsAdminService umsAdminService;
 
-    @ApiOperation(value = "测试接口")
-    @GetMapping("/test")
-    @PreAuthorize("hasAuthority('ums:admin:create')")
-    public CommonResult<String> test() {
-        return CommonResult.ok("Hello test 111111");
-    }
-
-    @ApiOperation(value = "测试接口2")
-    @GetMapping("/test2")
-    @PreAuthorize("hasAuthority('ums:admin:test2')")
-    public CommonResult<String> test2() {
-        return CommonResult.ok("Hello test 2222");
-    }
-
     @ApiOperation(value = "用户注册")
     @PostMapping("/register")
     @PreAuthorize("hasAuthority('ums:admin:create')")

@@ -137,12 +137,16 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         String token = jwtTokenUtil.generateToken(userDetails);
         // 获取用户详细信息
         UmsAdmin umsAdmin = getAdminByUsername(username);
-        UmsAdminVO umsAdminLoginVO = new UmsAdminVO();
-        BeanUtils.copyProperties(umsAdmin, umsAdminLoginVO);
-        umsAdminLoginVO.setToken(token);
+        UmsAdminVO umsAdminVO = new UmsAdminVO();
+        BeanUtils.copyProperties(umsAdmin, umsAdminVO);
+        umsAdminVO.setToken(token);
+        List<Long> permissionIds = getPermissionList(umsAdmin.getId()).stream()
+                .map(UmsPermission::getId)
+                .collect(Collectors.toList());
+        umsAdminVO.setPermissionIds(permissionIds);
         // 写入登录日志
         insertLoginLog(username);
-        return umsAdminLoginVO;
+        return umsAdminVO;
     }
 
     @Override
@@ -167,6 +171,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
 
     /**
      * 添加登录记录
+     *
      * @param username 用户名
      */
     private void insertLoginLog(String username) {

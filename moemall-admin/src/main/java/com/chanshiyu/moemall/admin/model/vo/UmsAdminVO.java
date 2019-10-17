@@ -49,6 +49,9 @@ public class UmsAdminVO {
     @ApiModelProperty("角色")
     private List<Long> roleIds;
 
+    @ApiModelProperty("权限")
+    private List<Long> permissionIds;
+
     @ApiModelProperty("Token")
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String token;

@@ -2,9 +2,10 @@ package com.chanshiyu.moemall.mbg.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.Serializable;
-import javax.persistence.*;
 import lombok.Data;
+
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Data
 @ApiModel("品牌表")
@@ -15,7 +16,10 @@ public class PmsBrand implements Serializable {
     @ApiModelProperty("")
     private Long id;
 
-    @ApiModelProperty("")
+    /**
+     * 名称
+     */
+    @ApiModelProperty("名称")
     private String name;
 
     /**
@@ -25,7 +29,10 @@ public class PmsBrand implements Serializable {
     @ApiModelProperty("首字母")
     private String firstLetter;
 
-    @ApiModelProperty("")
+    /**
+     * 排序
+     */
+    @ApiModelProperty("排序")
     private Integer sort;
 
     /**
@@ -35,8 +42,11 @@ public class PmsBrand implements Serializable {
     @ApiModelProperty("是否为品牌制造商：0->不是；1->是")
     private Integer factoryStatus;
 
+    /**
+     * 是否显示
+     */
     @Column(name = "show_status")
-    @ApiModelProperty("")
+    @ApiModelProperty("是否显示")
     private Integer showStatus;
 
     /**

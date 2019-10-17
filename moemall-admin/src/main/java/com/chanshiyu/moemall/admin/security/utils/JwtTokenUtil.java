@@ -1,5 +1,6 @@
 package com.chanshiyu.moemall.admin.security.utils;
 
+import com.chanshiyu.moemall.service.exception.AuthenticationException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -48,6 +49,7 @@ public class JwtTokenUtil {
 
     /**
      * 获取请求头部的token
+     *
      * @param request
      * @return
      */
@@ -81,7 +83,7 @@ public class JwtTokenUtil {
                     .parseClaimsJws(token)
                     .getBody();
         } catch (Exception e) {
-            log.info("JWT格式验证失败:{}", token);
+            log.info("JWT格式验证失败: {}", token);
         }
         return claims;
     }
@@ -109,6 +111,7 @@ public class JwtTokenUtil {
 
     /**
      * 验证token是否还有效
+     *
      * @param token       客户端传入的token
      * @param userDetails 从数据库中查询出来的用户信息
      */
