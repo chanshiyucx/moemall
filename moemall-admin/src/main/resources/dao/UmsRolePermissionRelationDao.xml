@@ -9,7 +9,7 @@
 
     <select id="getRoleList" resultMap="RoleResultMap">
         SELECT
-            r.*, p.id as permission_id
+            r.*, p.id permission_id
         FROM
             ums_role r
             LEFT JOIN ums_role_permission_relation rp ON r.id = rp.role_id

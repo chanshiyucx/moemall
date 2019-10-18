@@ -1,11 +1,10 @@
 package com.chanshiyu.moemall.admin.service.impl;
 
-import cn.hutool.core.util.StrUtil;
 import com.chanshiyu.moemall.admin.model.dto.UmsPermissionNode;
 import com.chanshiyu.moemall.admin.service.UmsPermissionService;
 import com.chanshiyu.moemall.mbg.mapper.UmsPermissionMapper;
 import com.chanshiyu.moemall.mbg.model.UmsPermission;
-import lombok.extern.slf4j.Slf4j;
+import io.micrometer.core.instrument.util.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +21,6 @@ import java.util.stream.Collectors;
  * @date 2019/10/12 10:38
  * @description 后台权限Service实现类
  */
-@Slf4j
 @Service
 public class UmsPermissionServiceImpl implements UmsPermissionService {
 
@@ -34,7 +32,7 @@ public class UmsPermissionServiceImpl implements UmsPermissionService {
     public int create(UmsPermission umsPermission) {
         umsPermission.setCreateTime(new Date());
         // 权限值未设置则为 null
-        if (StrUtil.isBlank(umsPermission.getValue())) {
+        if (StringUtils.isBlank(umsPermission.getValue())) {
             umsPermission.setValue(null);
         }
         return permissionMapper.insert(umsPermission);

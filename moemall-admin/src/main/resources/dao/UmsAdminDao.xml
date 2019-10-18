@@ -9,7 +9,7 @@
 
     <select id="getAdminList" resultMap="AdminResultMap">
         SELECT
-            a.*, ar.role_id as role_id
+            a.*, ar.role_id role_id
         FROM
             ums_admin a
             LEFT JOIN ums_admin_role_relation ar ON a.id = ar.admin_id

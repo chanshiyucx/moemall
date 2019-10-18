@@ -25,10 +25,10 @@ public class UmsAdminParam {
     @ApiModelProperty(value = "密码", required = true)
     private String password;
 
-    @ApiModelProperty(value = "用户头像")
+    @ApiModelProperty(value = "用户头像", required = true)
     private String avatar;
 
-    @ApiModelProperty(value = "邮箱")
+    @ApiModelProperty(value = "邮箱", required = true)
     @Email(message = "邮箱格式不合法")
     private String email;
 

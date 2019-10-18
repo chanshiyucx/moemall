@@ -19,7 +19,7 @@ import java.util.List;
 @ToString(callSuper = true)
 public class UmsRoleParam extends UmsRole {
 
-    @ApiModelProperty("权限ID")
+    @ApiModelProperty(value = "权限ID", required = true)
     @NotEmpty(message = "权限不能为空")
     List<Long> permissionIds;
 

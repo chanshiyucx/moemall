@@ -1,6 +1,5 @@
 package com.chanshiyu.moemall.admin.service.impl;
 
-import cn.hutool.core.util.StrUtil;
 import com.chanshiyu.moemall.admin.model.params.PmsBrandParam;
 import com.chanshiyu.moemall.admin.model.params.PmsBrandStatusParam;
 import com.chanshiyu.moemall.admin.service.PmsBrandService;
@@ -17,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.Date;
@@ -43,7 +43,7 @@ public class PmsBrandServiceImpl implements PmsBrandService {
         BeanUtils.copyProperties(pmsBrandParam, pmsBrand);
         pmsBrand.setCreateTime(new Date());
         // 如果创建时首字母为空，取名称的第一个为首字母
-        if (StrUtil.isEmpty(pmsBrand.getFirstLetter())) {
+        if (StringUtils.isEmpty(pmsBrand.getFirstLetter())) {
             pmsBrand.setFirstLetter(pmsBrand.getName().substring(0, 1));
         }
         return pmsBrandMapper.insertSelective(pmsBrand);
@@ -55,7 +55,7 @@ public class PmsBrandServiceImpl implements PmsBrandService {
         PmsBrand pmsBrand = new PmsBrand();
         BeanUtils.copyProperties(pmsBrandParam, pmsBrand);
         // 如果创建时首字母为空，取名称的第一个为首字母
-        if (StrUtil.isEmpty(pmsBrand.getFirstLetter())) {
+        if (StringUtils.isEmpty(pmsBrand.getFirstLetter())) {
             pmsBrand.setFirstLetter(pmsBrand.getName().substring(0, 1));
         }
         // 更新品牌时要更新商品中的品牌名称
@@ -89,7 +89,7 @@ public class PmsBrandServiceImpl implements PmsBrandService {
         Example example = new Example(PmsBrand.class);
         example.orderBy("sort").desc();
         Example.Criteria criteria = example.createCriteria();
-        if (!StrUtil.isEmpty(name)) {
+        if (!StringUtils.isEmpty(name)) {
             criteria.andLike("name", "%" + name + "%");
         }
         List<PmsBrand> pmsBrandList = pmsBrandMapper.selectByExample(example);

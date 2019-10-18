@@ -18,26 +18,26 @@ public class PmsBrandParam {
     @ApiModelProperty("")
     private Long id;
 
-    @ApiModelProperty("名称")
+    @ApiModelProperty(value = "名称", required = true)
     @NotEmpty(message = "名称不能为空")
     private String name;
 
     @ApiModelProperty("首字母")
     private String firstLetter;
 
-    @ApiModelProperty("排序")
+    @ApiModelProperty(value = "排序", required = true)
     @Min(value = 0, message = "排序最小为0")
     private Integer sort;
 
-    @ApiModelProperty("是否为品牌制造商：0->不是；1->是")
+    @ApiModelProperty(value = "是否为品牌制造商：0->不是；1->是", required = true)
     @FlagValidator(value = {"0","1"}, message = "厂家状态不正确")
     private Integer factoryStatus;
 
-    @ApiModelProperty("是否显示")
+    @ApiModelProperty(value = "是否显示", required = true)
     @FlagValidator(value = {"0","1"}, message = "显示状态不正确")
     private Integer showStatus;
 
-    @ApiModelProperty("品牌logo")
+    @ApiModelProperty(value = "品牌logo", required = true)
     @NotEmpty(message = "品牌logo不能为空")
     private String logo;
 

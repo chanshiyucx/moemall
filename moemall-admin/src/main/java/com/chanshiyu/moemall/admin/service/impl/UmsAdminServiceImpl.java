@@ -1,6 +1,5 @@
 package com.chanshiyu.moemall.admin.service.impl;
 
-import cn.hutool.core.util.StrUtil;
 import cn.hutool.http.useragent.UserAgent;
 import cn.hutool.http.useragent.UserAgentUtil;
 import com.chanshiyu.moemall.admin.dao.UmsAdminDao;
@@ -21,6 +20,7 @@ import com.chanshiyu.moemall.service.vo.CommonListResult;
 import com.chanshiyu.moemall.service.vo.ResultAttributes;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import io.micrometer.core.instrument.util.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -114,7 +114,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         UmsAdmin umsAdmin = new UmsAdmin();
         BeanUtils.copyProperties(umsAdminParam, umsAdmin);
         // 如果密码不为空
-        if (StrUtil.isNotBlank(umsAdmin.getPassword())) {
+        if (StringUtils.isNotBlank(umsAdmin.getPassword())) {
             String encodePassword = passwordEncoder.encode(umsAdmin.getPassword());
             umsAdmin.setPassword(encodePassword);
         }
