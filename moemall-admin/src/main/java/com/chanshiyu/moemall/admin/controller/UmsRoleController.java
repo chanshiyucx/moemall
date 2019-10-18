@@ -19,7 +19,7 @@ import java.util.List;
  * @description 后台用户角色管理
  */
 @Slf4j
-@Api(value = "后台用户角色管理", tags = "UmsRoleController")
+@Api(tags = "后台用户角色管理")
 @RestController
 @RequestMapping("/role")
 public class UmsRoleController {

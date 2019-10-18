@@ -10,6 +10,9 @@ import com.chanshiyu.moemall.mbg.model.PmsProduct;
 import com.chanshiyu.moemall.mbg.model.PmsProductCategory;
 import com.chanshiyu.moemall.mbg.model.PmsProductCategoryAttributeRelation;
 import com.chanshiyu.moemall.service.vo.CommonListResult;
+import com.chanshiyu.moemall.service.vo.ResultAttributes;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -88,7 +91,15 @@ public class PmsProductCategoryServiceImpl implements PmsProductCategoryService 
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
     public CommonListResult<PmsProductCategory> list(Long parentId, Integer pageNum, Integer pageSize) {
-        return null;
+        PageHelper.startPage(pageNum, pageSize);
+        Example example = new Example(PmsProductCategory.class);
+        example.orderBy("sort").desc();
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("parentId", parentId);
+        List<PmsProductCategory> pmsProductCategoryList = pmsProductCategoryMapper.selectByExample(example);
+        PageInfo<PmsProductCategory> info = new PageInfo<>(pmsProductCategoryList);
+        ResultAttributes attributes = new ResultAttributes(info.getPageNum(), info.getPageSize(), info.getTotal());
+        return new CommonListResult<>(pmsProductCategoryList, attributes);
     }
 
     /**

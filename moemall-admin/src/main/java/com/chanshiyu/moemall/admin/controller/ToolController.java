@@ -24,7 +24,7 @@ import java.util.HashMap;
  * @description 通用工具
  */
 @Slf4j
-@Api(value = "通用工具", tags = "ToolController")
+@Api(tags = "通用工具")
 @RestController
 @RequestMapping("/tool")
 public class ToolController {

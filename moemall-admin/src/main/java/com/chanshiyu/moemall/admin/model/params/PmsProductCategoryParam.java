@@ -16,7 +16,10 @@ import java.util.List;
 @Data
 public class PmsProductCategoryParam {
 
-    @ApiModelProperty("父分类的编号")
+    @ApiModelProperty("ID")
+    private Long id;
+
+    @ApiModelProperty("父分类的ID")
     private Long parentId;
 
     @ApiModelProperty(value = "商品分类名称", required = true)

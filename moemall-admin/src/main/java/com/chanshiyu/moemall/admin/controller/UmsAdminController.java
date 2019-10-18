@@ -23,7 +23,7 @@ import java.util.List;
  * @description 后台用户管理
  */
 @Slf4j
-@Api(value = "后台用户管理", tags = "UmsAdminController")
+@Api(tags = "后台用户管理")
 @RestController
 @RequestMapping("/admin")
 public class UmsAdminController {
