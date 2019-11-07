@@ -127,6 +127,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public UmsAdminVO login(String username, String password) {
+        log.info("username: {}, password: {}", username, password);
         // 密码需要客户端加密后传递
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
         if (!passwordEncoder.matches(password, userDetails.getPassword())) {

@@ -15,12 +15,18 @@ public class PmsProductCategoryAttributeRelation implements Serializable {
     @ApiModelProperty("")
     private Long id;
 
+    /**
+     * 商品分类ID
+     */
     @Column(name = "product_category_id")
-    @ApiModelProperty("")
+    @ApiModelProperty("商品分类ID")
     private Long productCategoryId;
 
+    /**
+     * 商品属性ID
+     */
     @Column(name = "product_attribute_id")
-    @ApiModelProperty("")
+    @ApiModelProperty("商品属性ID")
     private Long productAttributeId;
 
     private static final long serialVersionUID = 1L;

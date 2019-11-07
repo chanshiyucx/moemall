@@ -23,13 +23,14 @@ import java.util.stream.Stream;
 @RestControllerAdvice
 public class RestExceptionHandler {
 
-//    ！会拦截 spring security 的认证异常，先注释！
-//    @ExceptionHandler(Exception.class)
-//    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-//    public CommonResult<String> defaultErrorHandler(Exception e) {
-//        e.printStackTrace();
-//        return CommonResult.failed(e.getMessage());
-//    }
+    // TODO：！！会拦截 spring security 的认证异常
+    // 若注释后又无法抛出自定义错误，如登录密码错误
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public CommonResult<String> defaultErrorHandler(Exception e) {
+        e.printStackTrace();
+        return CommonResult.failed(e.getMessage());
+    }
 
     /**
      * 普通Restful接口参数判断
