@@ -1,11 +1,13 @@
 package com.chanshiyu.moemall.admin.service;
 
 import com.chanshiyu.moemall.admin.model.params.UmsAdminParam;
+import com.chanshiyu.moemall.admin.model.params.UmsUpdateAdminPasswordParam;
 import com.chanshiyu.moemall.admin.model.vo.UmsAdminVO;
 import com.chanshiyu.moemall.mbg.model.UmsAdmin;
 import com.chanshiyu.moemall.mbg.model.UmsPermission;
 import com.chanshiyu.moemall.service.vo.CommonListResult;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -26,14 +28,14 @@ public interface UmsAdminService {
     UmsAdmin register(UmsAdminParam umsAdminParam);
 
     /**
-     * 更新用户
-     */
-    UmsAdmin update(UmsAdminParam umsAdminParam);
-
-    /**
      * 用户登录
      */
     UmsAdminVO login(String username, String password);
+
+    /**
+     * 更新用户
+     */
+    UmsAdmin update(UmsAdminParam umsAdminParam);
 
     /**
      * 删除用户
@@ -49,5 +51,15 @@ public interface UmsAdminService {
      * 分页获取用户列表
      */
     CommonListResult<UmsAdminVO> list(Integer pageNum, Integer pageSize);
+
+    /**
+     * 更新密码
+     */
+    void upatePassword(UmsUpdateAdminPasswordParam umsUpdateAdminPasswordParam);
+
+    /**
+     * 刷新 token
+     */
+    String refreshToken(HttpServletRequest request);
 
 }

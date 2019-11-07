@@ -2,6 +2,7 @@ package com.chanshiyu.moemall.admin.controller;
 
 import com.chanshiyu.moemall.admin.model.params.UmsAdminLoginParam;
 import com.chanshiyu.moemall.admin.model.params.UmsAdminParam;
+import com.chanshiyu.moemall.admin.model.params.UmsUpdateAdminPasswordParam;
 import com.chanshiyu.moemall.admin.model.vo.UmsAdminVO;
 import com.chanshiyu.moemall.admin.service.UmsAdminService;
 import com.chanshiyu.moemall.mbg.model.UmsAdmin;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -38,18 +40,18 @@ public class UmsAdminController {
         return CommonResult.ok(umsAdminService.register(umsAdminParam));
     }
 
-    @ApiOperation(value = "更新用户")
-    @PutMapping("/update")
-    @PreAuthorize("hasAuthority('ums:admin:update')")
-    public CommonResult<UmsAdmin> update(@Valid @RequestBody UmsAdminParam umsAdminParam) {
-        return CommonResult.ok(umsAdminService.update(umsAdminParam));
-    }
-
     @ApiOperation(value = "用户登录")
     @PostMapping("/login")
     public CommonResult<UmsAdminVO> login(@Valid @RequestBody UmsAdminLoginParam umsAdminLoginParam) {
         UmsAdminVO umsAdminLoginVO = umsAdminService.login(umsAdminLoginParam.getUsername(), umsAdminLoginParam.getPassword());
         return CommonResult.ok(umsAdminLoginVO);
+    }
+
+    @ApiOperation(value = "更新用户")
+    @PutMapping("/update")
+    @PreAuthorize("hasAuthority('ums:admin:update')")
+    public CommonResult<UmsAdmin> update(@Valid @RequestBody UmsAdminParam umsAdminParam) {
+        return CommonResult.ok(umsAdminService.update(umsAdminParam));
     }
 
     @ApiOperation(value = "删除用户")
@@ -70,6 +72,21 @@ public class UmsAdminController {
                                                @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize) {
         CommonListResult<UmsAdminVO> result = umsAdminService.list(pageNum, pageSize);
         return CommonResult.ok(result.getList(), result.getAttributes());
+    }
+
+    @ApiOperation(value = "更新密码")
+    @PutMapping("/updatePassword")
+    @PreAuthorize("hasAuthority('ums:admin:update')")
+    public CommonResult updatePassword(@Valid @RequestBody UmsUpdateAdminPasswordParam umsUpdateAdminPasswordParam) {
+        umsAdminService.upatePassword(umsUpdateAdminPasswordParam);
+        return CommonResult.ok();
+    }
+
+    @ApiOperation(value = "刷新token")
+    @GetMapping("/refreshToken")
+    public CommonResult refreshToken(HttpServletRequest request) {
+        String refreshToken = umsAdminService.refreshToken(request);
+        return CommonResult.ok(refreshToken);
     }
 
 }

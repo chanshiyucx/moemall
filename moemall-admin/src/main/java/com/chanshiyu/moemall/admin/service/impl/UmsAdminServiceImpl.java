@@ -5,6 +5,7 @@ import cn.hutool.http.useragent.UserAgentUtil;
 import com.chanshiyu.moemall.admin.dao.UmsAdminDao;
 import com.chanshiyu.moemall.admin.dao.UmsAdminRoleRelationDao;
 import com.chanshiyu.moemall.admin.model.params.UmsAdminParam;
+import com.chanshiyu.moemall.admin.model.params.UmsUpdateAdminPasswordParam;
 import com.chanshiyu.moemall.admin.model.vo.UmsAdminVO;
 import com.chanshiyu.moemall.admin.security.utils.JwtTokenUtil;
 import com.chanshiyu.moemall.admin.service.UmsAdminService;
@@ -110,24 +111,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
-    public UmsAdmin update(UmsAdminParam umsAdminParam) {
-        UmsAdmin umsAdmin = new UmsAdmin();
-        BeanUtils.copyProperties(umsAdminParam, umsAdmin);
-        // 如果密码不为空
-        if (StringUtils.isNotBlank(umsAdmin.getPassword())) {
-            String encodePassword = passwordEncoder.encode(umsAdmin.getPassword());
-            umsAdmin.setPassword(encodePassword);
-        }
-        umsAdminMapper.updateByPrimaryKeySelective(umsAdmin);
-        // 更新用户角色关系表
-        updateRole(umsAdmin.getId(), umsAdminParam.getRoleIds());
-        return umsAdmin;
-    }
-
-    @Override
-    @Transactional(propagation = Propagation.REQUIRED)
     public UmsAdminVO login(String username, String password) {
-        log.info("username: {}, password: {}", username, password);
         // 密码需要客户端加密后传递
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
         if (!passwordEncoder.matches(password, userDetails.getPassword())) {
@@ -152,6 +136,22 @@ public class UmsAdminServiceImpl implements UmsAdminService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
+    public UmsAdmin update(UmsAdminParam umsAdminParam) {
+        UmsAdmin umsAdmin = new UmsAdmin();
+        BeanUtils.copyProperties(umsAdminParam, umsAdmin);
+        // 如果密码不为空
+        if (StringUtils.isNotBlank(umsAdmin.getPassword())) {
+            String encodePassword = passwordEncoder.encode(umsAdmin.getPassword());
+            umsAdmin.setPassword(encodePassword);
+        }
+        umsAdminMapper.updateByPrimaryKeySelective(umsAdmin);
+        // 更新用户角色关系表
+        updateRole(umsAdmin.getId(), umsAdminParam.getRoleIds());
+        return umsAdmin;
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED)
     public int delete(Long id) {
         return umsAdminMapper.deleteByPrimaryKey(id);
     }
@@ -170,6 +170,33 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         return new CommonListResult<>(page.getResult(), attributes);
     }
 
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED)
+    public void upatePassword(UmsUpdateAdminPasswordParam umsUpdateAdminPasswordParam) {
+        Example example = new Example(UmsAdmin.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("username", umsUpdateAdminPasswordParam.getUsername());
+        UmsAdmin umsAdmin = umsAdminMapper.selectOneByExample(example);
+        if (umsAdmin == null) {
+            throw new BadRequestException("用户不存在");
+        }
+        if (!passwordEncoder.matches(umsUpdateAdminPasswordParam.getOldPassword(), umsAdmin.getPassword())) {
+            throw new BadRequestException("旧密码错误");
+        }
+        umsAdmin.setPassword(passwordEncoder.encode(umsUpdateAdminPasswordParam.getNewPassword()));
+        umsAdminMapper.updateByPrimaryKeySelective(umsAdmin);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public String refreshToken(HttpServletRequest request) {
+        String token = jwtTokenUtil.getToken(request);
+        if (jwtTokenUtil.canRefresh(token)) {
+            return jwtTokenUtil.refreshToken(token);
+        }
+        return null;
+    }
+
     /**
      * 添加登录记录
      */
@@ -185,7 +212,6 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         UserAgent ua = UserAgentUtil.parse(request.getHeader("user-agent"));
         String userAgent = ua.getBrowser().toString() + "/" + ua.getVersion() + ", " + ua.getOs().toString();
         loginLog.setUserAgent(userAgent);
-        log.info("loginLog: {}", loginLog);
         loginLogMapper.insert(loginLog);
     }
 

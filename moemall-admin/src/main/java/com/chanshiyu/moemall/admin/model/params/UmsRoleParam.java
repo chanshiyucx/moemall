@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * @author SHIYU
  * @date 2019/10/14 9:44
- * @description
+ * @description 用户角色参数
  */
 @Data
 @EqualsAndHashCode(callSuper = true)

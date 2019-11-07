@@ -1,6 +1,5 @@
 package com.chanshiyu.moemall.admin.security.utils;
 
-import com.chanshiyu.moemall.service.exception.AuthenticationException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -49,9 +48,6 @@ public class JwtTokenUtil {
 
     /**
      * 获取请求头部的token
-     *
-     * @param request
-     * @return
      */
     public String getToken(HttpServletRequest request) {
         String authHeader = request.getHeader(tokenHeader);
