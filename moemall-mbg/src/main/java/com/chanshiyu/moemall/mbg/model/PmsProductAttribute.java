@@ -15,11 +15,17 @@ public class PmsProductAttribute implements Serializable {
     @ApiModelProperty("")
     private Long id;
 
+    /**
+     * 属性分类ID
+     */
     @Column(name = "product_attribute_category_id")
-    @ApiModelProperty("")
+    @ApiModelProperty("属性分类ID")
     private Long productAttributeCategoryId;
 
-    @ApiModelProperty("")
+    /**
+     * 属性名称
+     */
+    @ApiModelProperty("属性名称")
     private String name;
 
     /**

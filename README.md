@@ -25,11 +25,12 @@
 
 ## 通用服务
 
-| 项目           | 描述           |
-| -------------- | -------------- |
-| moemall-common | 通用的工具类库 |
-| moemall-mbg    | 通用的代码生成 |
-| moemall-admin  | 后台管理模块   |
+| 项目            | 描述           |
+| --------------- | -------------- |
+| moemall-common  | 通用的工具类库 |
+| moemall-mbg     | 通用的代码生成 |
+| moemall-service | 通用的服务层   |
+| moemall-admin   | 后台管理模块   |
 
 ## Nacos Docker
 

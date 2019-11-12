@@ -1,7 +1,5 @@
 package com.chanshiyu.moemall.admin.validator;
 
-import lombok.val;
-
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
