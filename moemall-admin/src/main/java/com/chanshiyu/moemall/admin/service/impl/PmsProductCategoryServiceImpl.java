@@ -71,6 +71,15 @@ public class PmsProductCategoryServiceImpl implements PmsProductCategoryService 
         Example.Criteria criteria = example.createCriteria();
         criteria.andEqualTo("productCategoryId", productCategory.getId());
         productMapper.updateByExampleSelective(product, example);
+        // 更新筛选属性信息【先删除再更新】
+        Example relationExample = new Example(PmsProductCategoryAttributeRelation.class);
+        Example.Criteria relationCriteria = example.createCriteria();
+        relationCriteria.andEqualTo("productCategoryId", pmsProductCategoryParam.getId());
+        pmsProductCategoryAttributeRelationMapper.deleteByExample(relationExample);
+        List<Long> productAttributeIdList = pmsProductCategoryParam.getProductAttributeIdList();
+        if (!CollectionUtils.isEmpty(productAttributeIdList)) {
+            insertRelationList(productCategory.getId(), productAttributeIdList);
+        }
         return pmsProductCategoryMapper.updateByPrimaryKeySelective(productCategory);
     }
 

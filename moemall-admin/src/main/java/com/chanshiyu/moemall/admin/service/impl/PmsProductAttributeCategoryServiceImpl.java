@@ -1,5 +1,7 @@
 package com.chanshiyu.moemall.admin.service.impl;
 
+import com.chanshiyu.moemall.admin.dao.ProductAttributeCategoryDao;
+import com.chanshiyu.moemall.admin.model.vo.PmsProductAttributeCategoryVO;
 import com.chanshiyu.moemall.admin.service.PmsProductAttributeCategoryService;
 import com.chanshiyu.moemall.mbg.mapper.PmsProductAttributeCategoryMapper;
 import com.chanshiyu.moemall.mbg.model.PmsProductAttribute;
@@ -26,6 +28,9 @@ public class PmsProductAttributeCategoryServiceImpl implements PmsProductAttribu
 
     @Autowired
     private PmsProductAttributeCategoryMapper pmsProductAttributeCategoryMapper;
+
+    @Autowired
+    private ProductAttributeCategoryDao productAttributeCategoryDao;
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
@@ -62,5 +67,11 @@ public class PmsProductAttributeCategoryServiceImpl implements PmsProductAttribu
         PageInfo<PmsProductAttributeCategory> info = new PageInfo<>(list);
         ResultAttributes resultAttributes = new ResultAttributes(info.getPageNum(), info.getPageSize(), info.getTotal());
         return new CommonListResult<>(list, resultAttributes);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public List<PmsProductAttributeCategoryVO> listWithAttr() {
+        return productAttributeCategoryDao.listWithAttr();
     }
 }

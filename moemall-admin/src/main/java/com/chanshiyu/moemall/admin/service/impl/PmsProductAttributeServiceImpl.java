@@ -1,5 +1,6 @@
 package com.chanshiyu.moemall.admin.service.impl;
 
+import com.chanshiyu.moemall.admin.model.dto.ProductAttrInfo;
 import com.chanshiyu.moemall.admin.service.PmsProductAttributeService;
 import com.chanshiyu.moemall.mbg.mapper.PmsProductAttributeCategoryMapper;
 import com.chanshiyu.moemall.mbg.mapper.PmsProductAttributeMapper;
@@ -80,5 +81,11 @@ public class PmsProductAttributeServiceImpl implements PmsProductAttributeServic
         PageInfo<PmsProductAttribute> info = new PageInfo<>(list);
         ResultAttributes resultAttributes = new ResultAttributes(info.getPageNum(), info.getPageSize(), info.getTotal());
         return new CommonListResult<>(list, resultAttributes);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public List<ProductAttrInfo> getProductAttrInfo(Long productCategoryId) {
+        return null;
     }
 }

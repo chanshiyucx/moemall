@@ -1,10 +1,10 @@
 package com.chanshiyu.moemall.admin.service;
 
-import com.chanshiyu.moemall.admin.model.params.PmsBrandParam;
-import com.chanshiyu.moemall.admin.model.params.PmsBrandStatusParam;
-import com.chanshiyu.moemall.mbg.model.PmsBrand;
+import com.chanshiyu.moemall.admin.model.dto.ProductAttrInfo;
 import com.chanshiyu.moemall.mbg.model.PmsProductAttribute;
 import com.chanshiyu.moemall.service.vo.CommonListResult;
+
+import java.util.List;
 
 /**
  * @author SHIYU
@@ -33,4 +33,6 @@ public interface PmsProductAttributeService {
      */
     CommonListResult<PmsProductAttribute> list(Integer pageNum, Integer pageSize, Long cid, Integer type);
 
+
+    List<ProductAttrInfo> getProductAttrInfo(Long productCategoryId);
 }

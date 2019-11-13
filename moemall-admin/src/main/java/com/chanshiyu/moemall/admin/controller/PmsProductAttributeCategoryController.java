@@ -1,5 +1,6 @@
 package com.chanshiyu.moemall.admin.controller;
 
+import com.chanshiyu.moemall.admin.model.vo.PmsProductAttributeCategoryVO;
 import com.chanshiyu.moemall.admin.service.PmsProductAttributeCategoryService;
 import com.chanshiyu.moemall.mbg.model.PmsProductAttributeCategory;
 import com.chanshiyu.moemall.service.vo.CommonListResult;
@@ -60,13 +61,21 @@ public class PmsProductAttributeCategoryController {
         return CommonResult.failed();
     }
 
-    @ApiOperation("获取商品属性列表")
+    @ApiOperation("获取商品属性分类列表")
     @GetMapping("/list")
     @PreAuthorize("hasAuthority('pms:productAttribute:read')")
     public CommonResult<List<PmsProductAttributeCategory>> list(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
                                                                 @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize) {
         CommonListResult<PmsProductAttributeCategory> result = pmsProductAttributeCategoryService.list(pageNum, pageSize);
         return CommonResult.ok(result.getList(), result.getAttributes());
+    }
+
+    @ApiOperation("获取所有商品属性分类及其下属性")
+    @GetMapping("/listWithAttr")
+    @PreAuthorize("hasAuthority('pms:productAttribute:read')")
+    public CommonResult<List<PmsProductAttributeCategoryVO>> listWithAttr() {
+        List<PmsProductAttributeCategoryVO> result = pmsProductAttributeCategoryService.listWithAttr();
+        return CommonResult.ok(result);
     }
 
 }

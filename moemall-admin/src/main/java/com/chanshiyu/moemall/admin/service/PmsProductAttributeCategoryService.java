@@ -1,5 +1,6 @@
 package com.chanshiyu.moemall.admin.service;
 
+import com.chanshiyu.moemall.admin.model.vo.PmsProductAttributeCategoryVO;
 import com.chanshiyu.moemall.mbg.model.PmsProductAttributeCategory;
 import com.chanshiyu.moemall.service.vo.CommonListResult;
 
@@ -19,5 +20,7 @@ public interface PmsProductAttributeCategoryService {
     int delete(Long id);
 
     CommonListResult<PmsProductAttributeCategory> list(Integer pageNum, Integer pageSize);
+
+    List<PmsProductAttributeCategoryVO> listWithAttr();
 
 }
