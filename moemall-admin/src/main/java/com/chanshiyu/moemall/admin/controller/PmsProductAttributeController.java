@@ -66,8 +66,8 @@ public class PmsProductAttributeController {
     @PreAuthorize("hasAuthority('pms:productAttribute:read')")
     public CommonResult<List<PmsProductAttribute>> list(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
                                                         @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize,
-                                                        @RequestParam(value = "cid", defaultValue = "") Long cid,
-                                                        @RequestParam(value = "type", defaultValue = "") Integer type) {
+                                                        @RequestParam(value = "cid", required = true) Long cid,
+                                                        @RequestParam(value = "type", required = true) Integer type) {
         CommonListResult<PmsProductAttribute> result = pmsProductAttributeService.list(pageNum, pageSize, cid, type);
         return CommonResult.ok(result.getList(), result.getAttributes());
     }

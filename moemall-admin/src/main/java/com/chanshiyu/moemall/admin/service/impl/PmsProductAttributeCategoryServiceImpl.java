@@ -39,8 +39,12 @@ public class PmsProductAttributeCategoryServiceImpl implements PmsProductAttribu
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
-    public int update(PmsProductAttributeCategory pmsProductAttributeCategory) {
-        return pmsProductAttributeCategoryMapper.updateByPrimaryKey(pmsProductAttributeCategory);
+    public int update(Long id, String name) {
+        // 只更新名称
+        PmsProductAttributeCategory pmsProductAttributeCategory = new PmsProductAttributeCategory();
+        pmsProductAttributeCategory.setId(id);
+        pmsProductAttributeCategory.setName(name);
+        return pmsProductAttributeCategoryMapper.updateByPrimaryKeySelective(pmsProductAttributeCategory);
     }
 
     @Override

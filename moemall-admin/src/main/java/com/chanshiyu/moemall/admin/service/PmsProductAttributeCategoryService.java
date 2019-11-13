@@ -14,7 +14,7 @@ public interface PmsProductAttributeCategoryService {
 
     int create(String name);
 
-    int update(PmsProductAttributeCategory pmsProductAttributeCategory);
+    int update(Long id, String name);
 
     int delete(Long id);
 

@@ -55,15 +55,16 @@ public class PmsProductAttributeServiceImpl implements PmsProductAttributeServic
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public int delete(Long id) {
-        int count = pmsProductAttributeMapper.deleteByPrimaryKey(id);
-        // 需要更新商品属性分类表中的数量, 0 属性，1 参数
+        // 需要更新商品属性分类表中的数量, 0 属性，1 参数，注意先获取再删除
         PmsProductAttribute pmsProductAttribute = pmsProductAttributeMapper.selectByPrimaryKey(id);
+        int count = pmsProductAttributeMapper.deleteByPrimaryKey(id);
         PmsProductAttributeCategory pmsProductAttributeCategory = pmsProductAttributeCategoryMapper.selectByPrimaryKey(pmsProductAttribute.getProductAttributeCategoryId());
         if (pmsProductAttribute.getType() == 0) {
             pmsProductAttributeCategory.setAttributeCount(pmsProductAttributeCategory.getAttributeCount() - 1);
         } else if (pmsProductAttribute.getType() == 1) {
             pmsProductAttributeCategory.setParamCount(pmsProductAttributeCategory.getParamCount() - 1);
         }
+        pmsProductAttributeCategoryMapper.updateByPrimaryKey(pmsProductAttributeCategory);
         return count;
     }
 
