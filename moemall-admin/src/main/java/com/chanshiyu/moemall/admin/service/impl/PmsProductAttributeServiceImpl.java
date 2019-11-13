@@ -1,5 +1,6 @@
 package com.chanshiyu.moemall.admin.service.impl;
 
+import com.chanshiyu.moemall.admin.dao.PmsProductAttributeDao;
 import com.chanshiyu.moemall.admin.model.dto.ProductAttrInfo;
 import com.chanshiyu.moemall.admin.service.PmsProductAttributeService;
 import com.chanshiyu.moemall.mbg.mapper.PmsProductAttributeCategoryMapper;
@@ -31,6 +32,9 @@ public class PmsProductAttributeServiceImpl implements PmsProductAttributeServic
 
     @Autowired
     private PmsProductAttributeCategoryMapper pmsProductAttributeCategoryMapper;
+
+    @Autowired
+    private PmsProductAttributeDao pmsProductAttributeDao;
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
@@ -86,6 +90,6 @@ public class PmsProductAttributeServiceImpl implements PmsProductAttributeServic
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
     public List<ProductAttrInfo> getProductAttrInfo(Long productCategoryId) {
-        return null;
+        return pmsProductAttributeDao.getProductAttrInfo(productCategoryId);
     }
 }

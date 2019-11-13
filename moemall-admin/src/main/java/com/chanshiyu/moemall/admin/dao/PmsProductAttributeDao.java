@@ -10,7 +10,7 @@ import java.util.List;
  * @date 2019/11/13 15:10
  * @description
  */
-public interface ProductAttributeDao {
+public interface PmsProductAttributeDao {
 
     List<ProductAttrInfo> getProductAttrInfo(@Param("id") Long productCategoryId);
 

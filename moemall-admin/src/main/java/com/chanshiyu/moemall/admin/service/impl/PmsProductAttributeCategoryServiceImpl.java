@@ -1,10 +1,9 @@
 package com.chanshiyu.moemall.admin.service.impl;
 
-import com.chanshiyu.moemall.admin.dao.ProductAttributeCategoryDao;
+import com.chanshiyu.moemall.admin.dao.PmsProductAttributeCategoryDao;
 import com.chanshiyu.moemall.admin.model.vo.PmsProductAttributeCategoryVO;
 import com.chanshiyu.moemall.admin.service.PmsProductAttributeCategoryService;
 import com.chanshiyu.moemall.mbg.mapper.PmsProductAttributeCategoryMapper;
-import com.chanshiyu.moemall.mbg.model.PmsProductAttribute;
 import com.chanshiyu.moemall.mbg.model.PmsProductAttributeCategory;
 import com.chanshiyu.moemall.service.vo.CommonListResult;
 import com.chanshiyu.moemall.service.vo.ResultAttributes;
@@ -30,7 +29,7 @@ public class PmsProductAttributeCategoryServiceImpl implements PmsProductAttribu
     private PmsProductAttributeCategoryMapper pmsProductAttributeCategoryMapper;
 
     @Autowired
-    private ProductAttributeCategoryDao productAttributeCategoryDao;
+    private PmsProductAttributeCategoryDao pmsProductAttributeCategoryDao;
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
@@ -72,6 +71,6 @@ public class PmsProductAttributeCategoryServiceImpl implements PmsProductAttribu
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
     public List<PmsProductAttributeCategoryVO> listWithAttr() {
-        return productAttributeCategoryDao.listWithAttr();
+        return pmsProductAttributeCategoryDao.listWithAttr();
     }
 }

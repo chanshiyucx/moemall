@@ -9,7 +9,7 @@ import java.util.List;
  * @date 2019/11/13 9:50
  * @description 商品属性分类Dao
  */
-public interface ProductAttributeCategoryDao {
+public interface PmsProductAttributeCategoryDao {
 
     List<PmsProductAttributeCategoryVO> listWithAttr();
 
