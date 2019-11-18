@@ -78,6 +78,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        // 设置自定义的 userDetailsService 以及密码编码器
         auth.userDetailsService(adminUserDetailsService)
                 .passwordEncoder(passwordEncoder());
     }
