@@ -23,7 +23,6 @@ import java.util.stream.Stream;
 @RestControllerAdvice
 public class RestExceptionHandler {
 
-    // TODO：！！会拦截 spring security 的认证异常
     // 若注释后又无法抛出自定义错误，如登录密码错误
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)

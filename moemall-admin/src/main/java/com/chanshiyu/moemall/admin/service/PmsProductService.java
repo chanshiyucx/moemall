@@ -28,4 +28,29 @@ public interface PmsProductService {
      */
     List<PmsProduct> list(Integer pageSize, Integer pageNum);
 
+    /**
+     * 批量修改商品上架状态
+     */
+    int updatePublishStatus(List<Long> ids, Integer publishStatus);
+
+    /**
+     * 批量修改商品推荐状态
+     */
+    int updateRecommendStatus(List<Long> ids, Integer recommendStatus);
+
+    /**
+     * 批量修改新品状态
+     */
+    int updateNewStatus(List<Long> ids, Integer newStatus);
+
+    /**
+     * 批量删除商品
+     */
+    int updateDeleteStatus(List<Long> ids, Integer deleteStatus);
+
+    /**
+     * 批量修改审核状态
+     */
+    int updateVerifyStatus(List<Long> ids, Integer verifyStatus, String detail);
+
 }

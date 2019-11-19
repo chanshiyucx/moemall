@@ -17,6 +17,7 @@ import tk.mybatis.mapper.entity.Example;
 
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -46,6 +47,9 @@ public class PmsProductServiceImpl implements PmsProductService {
 
     @Autowired
     private PmsProductAttributeValueMapper pmsProductAttributeValueMapper;
+
+    @Autowired
+    private PmsProductVertifyRecordMapper pmsProductVertifyRecordMapper;
 
     @Autowired
     private CmsSubjectCategoryMapper cmsSubjectCategoryMapper;
@@ -119,6 +123,68 @@ public class PmsProductServiceImpl implements PmsProductService {
         Example.Criteria criteria = productExample.createCriteria();
         criteria.andEqualTo("deleteStatus", 0);
         return pmsProductMapper.selectByExample(productExample);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED)
+    public int updatePublishStatus(List<Long> ids, Integer publishStatus) {
+        PmsProduct record = new PmsProduct();
+        record.setPublishStatus(publishStatus);
+        Example example = new Example(PmsProduct.class);
+        example.createCriteria().andIn("id", ids);
+        return pmsProductMapper.updateByExampleSelective(record, example);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED)
+    public int updateRecommendStatus(List<Long> ids, Integer recommendStatus) {
+        PmsProduct record = new PmsProduct();
+        record.setRecommandStatus(recommendStatus);
+        Example example = new Example(PmsProduct.class);
+        example.createCriteria().andIn("id", ids);
+        return pmsProductMapper.updateByExampleSelective(record, example);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED)
+    public int updateNewStatus(List<Long> ids, Integer newStatus) {
+        PmsProduct record = new PmsProduct();
+        record.setNewStatus(newStatus);
+        Example example = new Example(PmsProduct.class);
+        example.createCriteria().andIn("id", ids);
+        return pmsProductMapper.updateByExampleSelective(record, example);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED)
+    public int updateDeleteStatus(List<Long> ids, Integer deleteStatus) {
+        PmsProduct record = new PmsProduct();
+        record.setDeleteStatus(deleteStatus);
+        Example example = new Example(PmsProduct.class);
+        example.createCriteria().andIn("id", ids);
+        return pmsProductMapper.updateByExampleSelective(record, example);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED)
+    public int updateVerifyStatus(List<Long> ids, Integer verifyStatus, String detail) {
+        PmsProduct product = new PmsProduct();
+        product.setVerifyStatus(verifyStatus);
+        Example example = new Example(PmsProduct.class);
+        example.createCriteria().andIn("id", ids);
+        int count = pmsProductMapper.updateByExampleSelective(product, example);
+        // 修改完审核状态后插入审核记录
+        List<PmsProductVertifyRecord> list = ids.stream().map(id -> {
+            PmsProductVertifyRecord record = new PmsProductVertifyRecord();
+            record.setProductId(id);
+            record.setCreateTime(new Date());
+            record.setDetail(detail);
+            record.setStatus(verifyStatus);
+            record.setVertifyMan("test");
+            return record;
+        }).collect(Collectors.toList());
+        pmsProductVertifyRecordMapper.insertList(list);
+        return count;
     }
 
     /**
